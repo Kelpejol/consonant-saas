@@ -1,0 +1,136 @@
+# Python SDK
+
+Complete reference for the Consonant Python SDK.
+
+## Installation
+
+```bash
+pip install consonant-sdk
+```
+
+## Basic Usage
+
+```python
+from consonant import Consonant
+from openai import OpenAI
+
+consonant = Consonant(
+    api_key=os.environ["CONSONANT_API_KEY"],
+    customer_id_extractor=lambda ctx: ctx["user_id"]
+)
+
+client = OpenAI()
+tracked_client = consonant.wrap(client)
+```
+
+## Configuration Options
+
+```python
+consonant = Consonant(
+    # Required: Your Consonant API key
+    api_key="your_api_key",
+    
+    # Required: Function to extract customer ID from context
+    customer_id_extractor=lambda ctx: ctx["user_id"],
+    
+    # Optional: Buffer multiplier (default: 1.2)
+    buffer_multiplier=1.2,
+    
+    # Optional: Fallback when unreachable (default: "allow")
+    fallback_mode="allow",  # or "block"
+    
+    # Optional: Custom endpoint
+    endpoint="https://api.consonant.dev",
+    
+    # Optional: Timeout in seconds (default: 5)
+    timeout=5,
+)
+```
+
+## Using with OpenAI
+
+```python
+from consonant import Consonant
+from openai import OpenAI
+
+consonant = Consonant(
+    api_key=os.environ["CONSONANT_API_KEY"],
+    customer_id_extractor=lambda ctx: ctx["user_id"]
+)
+
+client = OpenAI()
+tracked = consonant.wrap(client)
+
+response = tracked.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Hello!"}],
+    consonant_context={"user_id": "customer_123"}
+)
+```
+
+## Using with Anthropic
+
+```python
+from consonant import Consonant
+from anthropic import Anthropic
+
+consonant = Consonant(
+    api_key=os.environ["CONSONANT_API_KEY"],
+    customer_id_extractor=lambda ctx: ctx["user_id"]
+)
+
+client = Anthropic()
+tracked = consonant.wrap(client)
+
+response = tracked.messages.create(
+    model="claude-3-opus-20240229",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello!"}],
+    consonant_context={"user_id": "customer_123"}
+)
+```
+
+## Error Handling
+
+```python
+from consonant import ConsonantError, InsufficientBalanceError
+
+try:
+    response = tracked.chat.completions.create(...)
+except InsufficientBalanceError as e:
+    print(f"Customer {e.customer_id} ran out of credits")
+except ConsonantError as e:
+    print(f"Consonant error: {e}")
+except Exception as e:
+    # AI provider errors pass through unchanged
+    raise
+```
+
+## Async Support
+
+```python
+from consonant import AsyncConsonant
+from openai import AsyncOpenAI
+
+consonant = AsyncConsonant(
+    api_key=os.environ["CONSONANT_API_KEY"],
+    customer_id_extractor=lambda ctx: ctx["user_id"]
+)
+
+client = AsyncOpenAI()
+tracked = consonant.wrap(client)
+
+response = await tracked.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Hello!"}],
+    consonant_context={"user_id": "customer_123"}
+)
+```
+
+## Type Hints
+
+The SDK is fully typed and works with mypy and pyright:
+
+```python
+from consonant import Consonant, ConsonantConfig, CustomerBalance
+```

@@ -1,0 +1,90 @@
+# How It Works
+
+Understand the architecture and flow of Consonant's real-time cost tracking.
+
+## Architecture Overview
+
+Consonant sits as a **control layer** between your application and AI providers:
+
+```
+Your App → Consonant SDK → AI Provider (OpenAI, Anthropic, etc.)
+              ↓
+        Consonant Backend
+              ↓
+        Real-time Dashboard
+```
+
+## The Request Flow
+
+### 1. Pre-flight Check
+
+Before any AI request, the SDK performs a **balance check**:
+
+```typescript
+// Happens automatically when you call the wrapped client
+const response = await trackedAI.chat.completions.create({...})
+
+// Under the hood:
+// 1. SDK estimates worst-case cost (max_tokens × output_price)
+// 2. SDK calls Consonant backend: "Can customer X afford $0.50?"
+// 3. Backend checks balance, reserves grains, returns approval
+// 4. If approved, request proceeds; if not, throws error
+```
+
+### 2. Streaming Deductions
+
+For streaming responses, the SDK deducts costs **in real-time**:
+
+```
+Token 1-50:   Deduct $0.02  → Balance: $4.98
+Token 51-100: Deduct $0.02  → Balance: $4.96
+Token 101+:   ...continues until stream ends
+```
+
+If the balance hits zero mid-stream, the SDK **kills the stream** and notifies your application.
+
+### 3. Final Reconciliation
+
+When the AI provider returns final usage data:
+
+```typescript
+// AI provider reports: 847 prompt tokens, 312 completion tokens
+// SDK tells Consonant backend the exact numbers
+// Backend calculates precise cost and refunds any over-reservation
+```
+
+## Cost Attribution
+
+Every request is attributed to a specific customer using your `customerIdExtractor`:
+
+```typescript
+customerIdExtractor: (context) => {
+  // Return whatever identifies your customer
+  return context.userId       // Simple user ID
+  return context.orgId        // Organization-level tracking
+  return context.stripeId     // Stripe customer ID
+}
+```
+
+## Data Storage
+
+Consonant stores:
+
+- **Balances** — Current grain balance per customer (Redis for speed)
+- **Transactions** — Append-only ledger of all cost movements (Postgres)
+- **Requests** — Detailed log of each AI request for analytics (TimescaleDB)
+
+We **never store**:
+- Prompt content
+- AI-generated responses
+- Any PII beyond customer IDs
+
+## Latency
+
+The pre-flight balance check adds approximately **3-5ms** to each request. This is achieved through:
+
+- Redis for balance lookups (sub-millisecond)
+- Lua scripts for atomic operations
+- Global edge deployment
+
+For a typical AI request that takes 2-5 seconds, this overhead is imperceptible.

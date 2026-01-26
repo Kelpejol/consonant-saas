@@ -1,0 +1,89 @@
+# Installation
+
+This guide covers all installation options for Consonant SDKs.
+
+## TypeScript / JavaScript
+
+### npm
+
+```bash
+npm install @consonant/sdk
+```
+
+### yarn
+
+```bash
+yarn add @consonant/sdk
+```
+
+### pnpm
+
+```bash
+pnpm add @consonant/sdk
+```
+
+### Requirements
+
+- Node.js 18.0.0 or higher
+- TypeScript 5.0+ (optional, but recommended)
+
+## Python
+
+### pip
+
+```bash
+pip install consonant-sdk
+```
+
+### poetry
+
+```bash
+poetry add consonant-sdk
+```
+
+### Requirements
+
+- Python 3.9 or higher
+- Compatible with pip, poetry, pipenv, and uv
+
+## Environment Variables
+
+After installation, set up your environment variables:
+
+```bash
+# .env.local
+CONSONANT_API_KEY=your_api_key_here
+```
+
+### Vercel
+
+In your Vercel dashboard, add `CONSONANT_API_KEY` to your environment variables.
+
+### Docker
+
+```dockerfile
+ENV CONSONANT_API_KEY=your_api_key_here
+```
+
+## Verify Installation
+
+Test that everything is working:
+
+```typescript
+import { Consonant } from '@consonant/sdk'
+
+const consonant = new Consonant({
+  apiKey: process.env.CONSONANT_API_KEY!,
+  customerIdExtractor: () => 'test-customer',
+})
+
+// Check connection
+const health = await consonant.healthCheck()
+console.log('Connected:', health.ok)
+```
+
+## Next Steps
+
+- [Quick Start Guide](/docs/quickstart)
+- [TypeScript SDK Reference](/docs/sdk/typescript)
+- [Python SDK Reference](/docs/sdk/python)

@@ -1,0 +1,47 @@
+# Introduction to Consonant
+
+Consonant is a **real-time AI cost enforcement platform** designed for B2B SaaS companies. It sits between your application and AI providers, tracking costs per customer and enforcing spending limits in real-time.
+
+## The Problem We Solve
+
+When you add AI features to your SaaS product, you typically charge customers a flat monthly rate (e.g., $50/user). But AI API costs are **completely variable**—some customers cost 10x or even 100x more than others.
+
+Without Consonant, you discover these "vampire customers" 30 days later when your AI bill arrives. By then, you've already lost money.
+
+## How Consonant Works
+
+1. **Install our SDK** — Wrap your AI client with 3 lines of code
+2. **Track automatically** — Every request is attributed to a customer
+3. **Enforce limits** — Block requests when customers exceed their budget
+
+```typescript
+import { Consonant } from '@consonant/sdk'
+
+const consonant = new Consonant({
+  apiKey: process.env.CONSONANT_KEY,
+  customerIdExtractor: (ctx) => ctx.userId
+})
+
+// Wrap your AI client
+const ai = consonant.wrap(openaiClient)
+
+// Now all requests are tracked & enforced
+const response = await ai.chat.completions.create({
+  model: 'gpt-4',
+  messages: [{ role: 'user', content: prompt }]
+})
+```
+
+## Key Features
+
+- **Per-customer profitability** — See exactly which customers are profitable
+- **Real-time enforcement** — Block requests when budgets run out
+- **Automated model switching** — Downgrade expensive users to cheaper models
+- **Smart alerts** — Get notified about anomalies and threshold violations
+- **Sub-5ms latency** — Balance checks complete in under 5 milliseconds
+
+## Next Steps
+
+- [Quick Start Guide](/docs/quickstart) — Get up and running in 5 minutes
+- [TypeScript SDK](/docs/sdk/typescript) — Full SDK documentation
+- [Core Concepts](/docs/concepts/how-it-works) — Understand the system architecture
