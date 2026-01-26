@@ -107,7 +107,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="w-full min-h-screen relative bg-[#F7F5F3] overflow-x-hidden flex flex-col justify-start items-center">
+    <div className="w-full min-h-screen pt-12 sm:pt-14 md:pt-16 lg:pt-[84px] relative bg-[#F7F5F3] overflow-x-hidden flex flex-col justify-start items-center">
       <div className="relative flex flex-col justify-start items-center w-full">
         {/* Main container with proper margins */}
         <div className="w-full max-w-none px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] lg:w-[1060px] relative flex flex-col justify-start items-start min-h-screen">
@@ -122,7 +122,7 @@ export default function LandingPage() {
             <div className="w-full h-12 sm:h-14 md:h-16 lg:h-[84px] absolute left-0 top-0 flex justify-center items-center z-20 px-6 sm:px-8 md:px-12 lg:px-0">
               <div className="w-full h-0 absolute left-0 top-6 sm:top-7 md:top-8 lg:top-[42px] border-t border-[rgba(55,50,47,0.12)] shadow-[0px_1px_0px_white]"></div>
 
-              <div className="w-full max-w-[calc(100%-32px)] sm:max-w-[calc(100%-48px)] md:max-w-[calc(100%-64px)] lg:max-w-[700px] lg:w-[700px] h-10 sm:h-11 md:h-12 py-1.5 sm:py-2 px-3 sm:px-4 md:px-4 pr-2 sm:pr-3 bg-[#F7F5F3] backdrop-blur-sm shadow-[0px_0px_0px_2px_white] overflow-hidden rounded-[50px] flex justify-between items-center relative z-30">
+              <div className="fixed left-1/2 top-0 transform -translate-x-1/2 w-full max-w-[calc(100%-32px)] sm:max-w-[calc(100%-48px)] md:max-w-[calc(100%-64px)] lg:max-w-[700px] lg:w-[700px] h-10 sm:h-11 md:h-12 py-1.5 sm:py-2 px-3 sm:px-4 md:px-4 pr-2 sm:pr-3 bg-black shadow-none overflow-hidden rounded-none flex justify-between items-center z-50 text-white">
                 <div className="flex justify-center items-center">
                   <div className="flex justify-start items-center">
                     <div className="flex items-center">
