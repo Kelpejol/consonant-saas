@@ -40,8 +40,8 @@
     "next": "15.1.9",
     "next-auth": "^5.0.0-beta.30",
     "nodemailer": "^7.0.12",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "19.2.1",
+  "react-dom": "19.2.1"
     "react-remove-scroll": "^2.7.2",
     "recharts": "^3.7.0",
     "resend": "^6.8.0",
