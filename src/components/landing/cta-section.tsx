@@ -1,89 +1,49 @@
-"use client";
+"use client"
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import Link from "next/link";
-
-export function CTASection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
+export default function CTASection() {
   return (
-    <section className="relative bg-black text-white py-24 md:py-32">
-      <div ref={ref} className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-        {/* Headline */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-8"
-        >
-          Stop losing money
-          <br />
-          on AI features
-        </motion.h2>
-
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-xl text-neutral-400 max-w-2xl mx-auto mb-12"
-        >
-          Join 127 founders who know exactly what their AI costs. Real-time.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-        >
-          <Link
-            href="/signup"
-            className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 text-base font-medium hover:bg-neutral-100 transition-colors w-full sm:w-auto justify-center"
-          >
-            Start Free Trial
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-          <Link
-            href="/docs"
-            className="inline-flex items-center gap-2 border-2 border-white text-white px-8 py-4 text-base font-medium hover:bg-white hover:text-black transition-colors w-full sm:w-auto justify-center"
-          >
-            Read Documentation
-          </Link>
-        </motion.div>
-
-        {/* Trust Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-8 text-sm text-neutral-500"
-        >
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-            5-minute setup
+    <div className="w-full relative overflow-hidden flex flex-col justify-center items-center gap-2">
+      {/* Content */}
+      <div className="self-stretch px-6 md:px-24 py-12 md:py-12 border-t border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6 relative z-10">
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <div className="w-full h-full relative">
+            {Array.from({ length: 300 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute h-4 w-full rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+                style={{
+                  top: `${i * 16 - 120}px`,
+                  left: "-100%",
+                  width: "300%",
+                }}
+              ></div>
+            ))}
           </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            No credit card required
+        </div>
+
+        <div className="w-full max-w-[586px] px-6 py-5 md:py-8 overflow-hidden rounded-lg flex flex-col justify-start items-center gap-6 relative z-20">
+          <div className="self-stretch flex flex-col justify-start items-start gap-3">
+            <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[56px] font-sans tracking-tight">
+              Control your AI costs today
+            </div>
+            <div className="self-stretch text-center text-[#605A57] text-base leading-7 font-sans font-medium">
+              Join developers who are enforcing spending limits and maximizing AI profitability
+              <br />
+              with real-time cost control.
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            Cancel anytime
+          <div className="w-full max-w-[497px] flex flex-col justify-center items-center gap-12">
+            <div className="flex justify-start items-center gap-4">
+              <div className="h-10 px-12 py-[6px] relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-[#2A2520] transition-colors">
+                <div className="w-44 h-[41px] absolute left-0 top-0 bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
+                <div className="flex flex-col justify-center text-white text-[13px] font-medium leading-5 font-sans">
+                  Start for free
+                </div>
+              </div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </section>
-  );
+    </div>
+  )
 }
