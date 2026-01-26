@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
 
 interface FeatureCardProps {
   title: string
@@ -46,12 +45,145 @@ function FeatureCard({
   )
 }
 
+// Animated code line component
+function AnimatedCodeLine({ 
+  text, 
+  delay, 
+  highlight = false 
+}: { 
+  text: string; 
+  delay: number;
+  highlight?: boolean;
+}) {
+  const [visible, setVisible] = useState(false)
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), delay)
+    return () => clearTimeout(timer)
+  }, [delay])
+  
+  return (
+    <div 
+      className={`transition-all duration-300 ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1'
+      }`}
+    >
+      <code className={`text-[11px] sm:text-xs md:text-sm font-mono ${
+        highlight ? 'text-emerald-400' : 'text-slate-300'
+      }`}>
+        {text}
+      </code>
+    </div>
+  )
+}
+
+// Code showcase component
+function CodeShowcase({ activeCard }: { activeCard: number }) {
+  const codeExamples = [
+    // Preflight check showcase
+    {
+      lines: [
+        { text: "// 1. Wrap your OpenAI client", delay: 0, highlight: false },
+        { text: "const client = consonant.wrap(openai, {", delay: 200, highlight: true },
+        { text: "  customerId: user.id", delay: 400, highlight: true },
+        { text: "});", delay: 600, highlight: true },
+        { text: "", delay: 800, highlight: false },
+        { text: "// 2. Make requests as usual", delay: 1000, highlight: false },
+        { text: "const response = await client.chat.completions.create({", delay: 1200, highlight: false },
+        { text: '  model: "gpt-4",', delay: 1400, highlight: false },
+        { text: "  messages: [...],", delay: 1600, highlight: false },
+        { text: "  stream: true", delay: 1800, highlight: false },
+        { text: "});", delay: 2000, highlight: false },
+        { text: "", delay: 2200, highlight: false },
+        { text: "// ✓ Balance checked in <5ms", delay: 2400, highlight: true },
+      ]
+    },
+    // Token tracking showcase
+    {
+      lines: [
+        { text: "// Real-time token accounting", delay: 0, highlight: false },
+        { text: "for await (const chunk of stream) {", delay: 200, highlight: false },
+        { text: "  // Consonant auto-tracks each token", delay: 400, highlight: true },
+        { text: "  await sendToUser(chunk);", delay: 600, highlight: false },
+        { text: "}", delay: 800, highlight: false },
+        { text: "", delay: 1000, highlight: false },
+        { text: "// Console output:", delay: 1200, highlight: false },
+        { text: "// [Consonant] +50 tokens, $0.003 deducted", delay: 1400, highlight: true },
+        { text: "// [Consonant] +50 tokens, $0.003 deducted", delay: 1600, highlight: true },
+        { text: "// [Consonant] Request complete: 892 tokens", delay: 1800, highlight: true },
+        { text: "// [Consonant] Final cost: $0.054", delay: 2000, highlight: true },
+      ]
+    },
+    // Kill switch showcase
+    {
+      lines: [
+        { text: "// Automatic kill switch", delay: 0, highlight: false },
+        { text: "try {", delay: 200, highlight: false },
+        { text: "  const response = await client.generate(params);", delay: 400, highlight: false },
+        { text: "} catch (error) {", delay: 600, highlight: false },
+        { text: "  if (error instanceof InsufficientBalanceError) {", delay: 800, highlight: true },
+        { text: "    // Stream auto-killed at exact limit", delay: 1000, highlight: true },
+        { text: '    showUpgradePrompt("AI limit reached");', delay: 1200, highlight: false },
+        { text: "  }", delay: 1400, highlight: false },
+        { text: "}", delay: 1600, highlight: false },
+        { text: "", delay: 1800, highlight: false },
+        { text: "// ✓ Never overspend, never lose money", delay: 2000, highlight: true },
+      ]
+    },
+  ]
+
+  const currentExample = codeExamples[activeCard]
+
+  return (
+    <div className="w-full h-full bg-[#1a1a2e] rounded-lg overflow-hidden flex flex-col">
+      {/* Terminal header */}
+      <div className="flex items-center gap-2 px-4 py-3 bg-[#16162a] border-b border-slate-700/50">
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-500/80" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+          <div className="w-3 h-3 rounded-full bg-green-500/80" />
+        </div>
+        <span className="text-slate-400 text-xs font-mono ml-2">index.ts</span>
+      </div>
+      
+      {/* Code content */}
+      <div className="flex-1 p-4 sm:p-5 md:p-6 overflow-hidden">
+        <div className="space-y-1" key={activeCard}>
+          {currentExample.lines.map((line, index) => (
+            <AnimatedCodeLine 
+              key={`${activeCard}-${index}`}
+              text={line.text} 
+              delay={line.delay}
+              highlight={line.highlight}
+            />
+          ))}
+        </div>
+      </div>
+      
+      {/* Terminal footer with metrics */}
+      <div className="px-4 py-3 bg-[#16162a] border-t border-slate-700/50 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-emerald-400 text-xs font-mono">connected</span>
+          </div>
+        </div>
+        <div className="text-slate-500 text-xs font-mono">
+          latency: <span className="text-slate-300">&lt;5ms</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function HeroSection() {
   const [activeCard, setActiveCard] = useState(0)
   const [progress, setProgress] = useState(0)
   const mountedRef = useRef(true)
 
   useEffect(() => {
+    mountedRef.current = true
+    
     const progressInterval = setInterval(() => {
       if (!mountedRef.current) return
 
@@ -62,18 +194,12 @@ export function HeroSection() {
           }
           return 0
         }
-        return prev + 2 // 2% every 100ms = 5 seconds total
+        return prev + 1.67 // ~1.67% every 100ms = 6 seconds total
       })
     }, 100)
 
     return () => {
       clearInterval(progressInterval)
-      mountedRef.current = false
-    }
-  }, [])
-
-  useEffect(() => {
-    return () => {
       mountedRef.current = false
     }
   }, [])
@@ -88,87 +214,82 @@ export function HeroSection() {
     <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-[216px] pb-8 sm:pb-12 md:pb-16 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0">
       <div className="w-full max-w-[937px] lg:w-[937px] flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[80px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-24 font-serif px-2 sm:px-4 md:px-0">
-            Control your AI costs
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full border border-[#E0DEDB] shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-xs font-medium text-[#49423D]">
+              Real-time AI cost enforcement
+            </span>
+          </div>
+          
+          {/* Main headline */}
+          <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[72px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.1] lg:leading-[1.05] font-serif px-2 sm:px-4 md:px-0">
+            Stop losing money on
             <br />
-            in real-time
+            <span className="relative">
+              AI overages
+              <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 5.5C47 2.5 153 2.5 199 5.5" stroke="#37322F" strokeWidth="2" strokeLinecap="round" opacity="0.3"/>
+              </svg>
+            </span>
           </div>
-          <div className="w-full max-w-[506.08px] lg:w-[506.08px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.80)] sm:text-lg md:text-xl leading-[1.4] sm:leading-[1.45] md:leading-[1.5] lg:leading-7 font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm">
-            Enforce AI spending limits instantly with our lightweight SDK.
-            <br className="hidden sm:block" />
-            Never overpay on tokens again.
+          
+          {/* Subheadline */}
+          <div className="w-full max-w-[540px] lg:w-[540px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.75)] sm:text-lg md:text-xl leading-[1.5] sm:leading-[1.55] md:leading-[1.6] font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm">
+            Consonant enforces per-customer AI spending limits in real-time.
+            {" "}
+            <span className="text-[#37322F] font-semibold">
+              Kill runaway requests mid-stream
+            </span>
+            {" "}before they drain your margins.
           </div>
         </div>
       </div>
 
-      <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
-        <div className="backdrop-blur-[8.25px] flex justify-start items-center gap-4">
-          <div className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full flex justify-center items-center">
-            <div className="w-20 sm:w-24 md:w-28 lg:w-44 h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
-            <div className="flex flex-col justify-center text-white text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
-              Start for free
+      {/* CTA Buttons */}
+      <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-8 sm:mt-10 md:mt-12 lg:mt-14">
+        <div className="flex justify-center items-center gap-3 sm:gap-4">
+          {/* Primary CTA */}
+          <div className="h-11 sm:h-12 md:h-[52px] px-6 sm:px-8 md:px-10 py-2 relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset,0px_4px_12px_rgba(0,0,0,0.15)] overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-[#2a2523] transition-colors group">
+            <div className="w-full h-[41px] absolute left-0 top-0 bg-gradient-to-b from-[rgba(255,255,255,0.08)] to-transparent mix-blend-overlay"></div>
+            <div className="flex items-center gap-2 text-white text-sm sm:text-base font-medium font-sans">
+              <span>Start for free</span>
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Secondary CTA */}
+          <div className="h-11 sm:h-12 md:h-[52px] px-5 sm:px-6 md:px-8 py-2 bg-white border border-[#E0DEDB] shadow-sm rounded-full flex justify-center items-center cursor-pointer hover:bg-[#FAFAF9] transition-colors">
+            <div className="flex items-center gap-2 text-[#49423D] text-sm sm:text-base font-medium font-sans">
+              <span>View docs</span>
             </div>
           </div>
         </div>
+        
+        {/* Trust indicator */}
+        <div className="flex items-center gap-2 text-[#7A746F] text-xs sm:text-sm font-sans">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>No credit card required • 5 minute setup</span>
+        </div>
       </div>
 
+      {/* Background pattern */}
       <div className="absolute top-[232px] sm:top-[248px] md:top-[264px] lg:top-[320px] left-1/2 transform -translate-x-1/2 z-0 pointer-events-none">
-        <img
-          src="/mask-group-pattern.svg"
-          alt=""
-          className="w-[936px] sm:w-[1404px] md:w-[2106px] lg:w-[2808px] h-auto opacity-30 sm:opacity-40 md:opacity-50 mix-blend-multiply"
-          style={{
-            filter: "hue-rotate(15deg) saturate(0.7) brightness(1.2)",
-          }}
-        />
+        <div className="w-[800px] sm:w-[1000px] md:w-[1200px] lg:w-[1400px] h-[400px] sm:h-[500px] md:h-[600px] bg-gradient-radial from-[#37322F]/5 via-transparent to-transparent rounded-full blur-3xl" />
       </div>
 
+      {/* Code showcase */}
       <div className="w-full max-w-[960px] lg:w-[960px] pt-2 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-2 sm:px-4 md:px-6 lg:px-11 flex flex-col justify-center items-center gap-2 relative z-5 my-8 sm:my-12 md:my-16 lg:my-16 mb-0 lg:pb-0">
-        <div className="w-full max-w-[960px] lg:w-[960px] h-[200px] sm:h-[280px] md:h-[450px] lg:h-[695.55px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-[6px] sm:rounded-[8px] lg:rounded-[9.06px] flex flex-col justify-start items-start">
-          <div className="self-stretch flex-1 flex justify-start items-start">
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="relative w-full h-full overflow-hidden">
-                <div
-                  className={`absolute inset-0 transition-all duration-500 ease-in-out ${
-                    activeCard === 0 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
-                  }`}
-                >
-                  <img
-                    src="/images/dsadsadsa.jpeg"
-                    alt="Schedules Dashboard - Customer Subscription Management"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div
-                  className={`absolute inset-0 transition-all duration-500 ease-in-out ${
-                    activeCard === 1 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
-                  }`}
-                >
-                  <img
-                    src="/analytics-dashboard-with-charts-graphs-and-data-vi.jpg"
-                    alt="Analytics Dashboard"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div
-                  className={`absolute inset-0 transition-all duration-500 ease-in-out ${
-                    activeCard === 2 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"
-                  }`}
-                >
-                  <img
-                    src="/data-visualization-dashboard-with-interactive-char.jpg"
-                    alt="Data Visualization Dashboard"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="w-full max-w-[960px] lg:w-[960px] h-[280px] sm:h-[340px] md:h-[400px] lg:h-[440px] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.08),0px_8px_40px_-12px_rgba(0,0,0,0.25)] overflow-hidden rounded-[10px] sm:rounded-[12px] lg:rounded-[16px]">
+          <CodeShowcase activeCard={activeCard} />
         </div>
       </div>
 
+      {/* Feature cards */}
       <div className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
           <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
@@ -183,22 +304,22 @@ export function HeroSection() {
 
         <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
           <FeatureCard
-            title="Real-time balance checks"
-            description="Instantly verify customer spending limits before each AI request with sub-millisecond latency."
+            title="Pre-flight balance checks"
+            description="Verify customer budgets in <5ms before every AI request. Reject instantly if they can't afford it."
             isActive={activeCard === 0}
             progress={activeCard === 0 ? progress : 0}
             onClick={() => handleCardClick(0)}
           />
           <FeatureCard
-            title="Transparent token tracking"
-            description="Track every token consumed across OpenAI, Anthropic, and other AI providers with precision."
+            title="Real-time token metering"
+            description="Track every token as it streams. Update balances atomically with Redis-backed microsecond operations."
             isActive={activeCard === 1}
             progress={activeCard === 1 ? progress : 0}
             onClick={() => handleCardClick(1)}
           />
           <FeatureCard
-            title="Spending analytics"
-            description="Monitor customer usage patterns and profitability with detailed dashboards and reports."
+            title="Mid-stream kill switch"
+            description="Automatically terminate responses when limits hit. Your customer sees partial output, you lose nothing."
             isActive={activeCard === 2}
             progress={activeCard === 2 ? progress : 0}
             onClick={() => handleCardClick(2)}
