@@ -32,16 +32,15 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import SmartSimpleBrilliant from "../components/smart-simple-brilliant"
-import YourWorkInSync from "../components/your-work-in-sync"
-import EffortlessIntegration from "../components/effortless-integration-updated"
-import NumbersThatSpeak from "../components/numbers-that-speak"
-import DocumentationSection from "../components/documentation-section"
-import FAQSection from "../components/faq-section"
-import CTASection from "../components/cta-section"
-import FooterSection from "../components/footer-section"
-import TestimonialsSection from "../components/testimonials-section" // Added import
-import PricingSection from "../components/pricing-section" // Added import
+import SmartSimpleBrilliant from "../components/landing/smart-simple-brilliant"
+import YourWorkInSync from "../components/landing/your-work-in-sync"
+import EffortlessIntegration from "../components/landing/effortless-integration-updated"
+import NumbersThatSpeak from "../components/landing/numbers-that-speak"
+import DocumentationSection from "../components/landing/documentation-section"
+import FAQSection from "../components/landing/faq-section"
+import CTASection from "../components/landing/cta-section"
+import FooterSection from "../components/landing/footer-section"
+
 
 // Reusable Badge Component
 function Badge({ icon, text }: { icon: React.ReactNode; text: string }) {
