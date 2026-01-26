@@ -127,9 +127,11 @@ export default function LandingPage() {
                   <div className="flex justify-start items-center">
                     <div className="flex items-center">
                       <div className="bg-black p-1 rounded-md">
-                        <Image src="/consonant.png" alt="Consonant logo" width={36} height={36} className="block" />
+                        <Image src="/consonant.png" alt="Consonant logo" width={98} height={48} className="block" />
                       </div>
                     </div>
+
+                    
                   </div>
                   <div className="pl-3 sm:pl-4 md:pl-5 lg:pl-5 flex justify-start items-start hidden sm:flex flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-4">
                     <div className="flex justify-start items-center">
