@@ -34,8 +34,7 @@ const navigation: NavItem[] = [
     items: [
       { title: "TypeScript SDK", href: "/docs/sdk/typescript" },
       { title: "Python SDK", href: "/docs/sdk/python" },
-      { title: "Next.js Integration", href: "/docs/integrations/nextjs" },
-      { title: "Express Integration", href: "/docs/integrations/express" },
+     
     ],
   },
   {
@@ -52,7 +51,7 @@ const navigation: NavItem[] = [
     items: [
       { title: "SDK Configuration", href: "/docs/api/configuration" },
       { title: "Balance Check", href: "/docs/api/balance-check" },
-      { title: "Webhooks", href: "/docs/api/webhooks" },
+     
       { title: "Error Handling", href: "/docs/api/errors" },
     ],
   },
