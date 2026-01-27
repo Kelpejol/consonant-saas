@@ -45,6 +45,10 @@
 }
 
 :root {
+  /* Explicitly set color scheme for better browser consistency */
+  color-scheme: light;
+  
+  /* Updated to use proper HSL format for consistency */
   --background: hsl(0 0% 100%);
   --foreground: hsl(240 10% 3.9%);
   --card: hsl(0 0% 100%);
@@ -79,11 +83,16 @@
   --sidebar-border: hsl(220 13% 91%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
   
+  /* Font variables */
   --font-inter: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-instrument-serif: "Instrument Serif", ui-serif, serif;
 }
 
 .dark {
+  /* Explicitly set dark color scheme */
+  color-scheme: dark;
+  
+  /* Updated to use proper HSL format for consistency */
   --background: hsl(240 10% 3.9%);
   --foreground: hsl(0 0% 98%);
   --card: hsl(240 10% 3.9%);
@@ -122,8 +131,19 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    /* Force color rendering to be consistent */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Ensure proper color inheritance */
+  html {
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
   }
 }
 
@@ -145,12 +165,10 @@
   font-display: swap;
 }
 
-/* Added explicit font loading optimization */
-@supports (font-display: swap) {
-  @font-face {
-    font-family: "Instrument Serif";
-    font-display: swap;
-  }
+/* Improved font loading optimization */
+@font-face {
+  font-family: "Instrument Serif";
+  font-display: swap;
 }
 
 .mix-blend-multiply {
@@ -159,4 +177,15 @@
 
 .backdrop-blur-custom {
   backdrop-filter: blur(8.25px);
+  -webkit-backdrop-filter: blur(8.25px); /* Safari support */
+}
+
+/* Additional fixes for cross-browser consistency */
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    /* For devices with wider color gamut, ensure sRGB fallback */
+    :root {
+      color-profile: srgb;
+    }
+  }
 }
