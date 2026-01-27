@@ -8,6 +8,9 @@ import { Navbar } from "../components/landing/navbar"
 import { HeroSection } from "../components/landing/hero-section"
 import { SocialProofSection } from "../components/landing/social-proof-section"
 import { BentoGridSection } from "../components/landing/bento-grid-section"
+import ArchitectureSection from "../components/landing/architecture-section"
+import UseCasesSection from "../components/landing/use-cases-section"
+import OpenSourceSection from "../components/landing/open-source-section"
 
 export default function LandingPage() {
   return (
@@ -31,11 +34,20 @@ export default function LandingPage() {
             {/* Social Proof Section */}
             <SocialProofSection />
 
-            {/* Bento Grid Section */}
+            {/* Bento Grid Section - Core Features */}
             <BentoGridSection />
+
+            {/* Architecture Section - How It Works */}
+            <ArchitectureSection />
+
+            {/* Use Cases Section */}
+            <UseCasesSection />
 
             {/* Documentation Section */}
             <DocumentationSection />
+
+            {/* Open Source Section */}
+            <OpenSourceSection />
 
             {/* FAQ Section */}
             <FAQSection />
