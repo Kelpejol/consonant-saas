@@ -252,7 +252,7 @@ export function HeroSection() {
         <div className="flex justify-center items-center gap-3 sm:gap-4">
           {/* Primary CTA */}
           <a
-            href="https://tally.so/r/eqaogj"
+            href="https://tally.so/r/eqaogJ"
             target="_blank"
             rel="noopener noreferrer"
             className="h-11 sm:h-12 md:h-[52px] px-6 sm:px-8 md:px-10 py-2 relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset,0px_4px_12px_rgba(0,0,0,0.15)] overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-[#2a2523] transition-colors group"

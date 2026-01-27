@@ -63,7 +63,7 @@ export function Navbar() {
 
             <div className="hidden md:flex h-8 sm:h-9 md:h-10 justify-start items-start gap-2 sm:gap-3">
             <a 
-              href="https://tally.so/r/eqaogj"  
+              href="https://tally.so/r/eqaogJ"  
               target="_blank"
               rel="noopener noreferrer"
               className="cursor-pointer px-4 py-2 bg-white hover:bg-slate-100 transition-colors shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center">
@@ -109,7 +109,7 @@ export function Navbar() {
                 </Link>
                 <div className="h-[1px] bg-white/10 my-1 mx-4" />
                 <a
-                  href="https://tally.so/r/eqaogj"
+                  href="https://tally.so/r/eqaogJ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-pointer p-3 m-2 text-center bg-white text-black font-semibold rounded-xl hover:bg-slate-100 transition-colors"
