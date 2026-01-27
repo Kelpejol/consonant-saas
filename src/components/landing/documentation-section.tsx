@@ -1,15 +1,105 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import type React from "react"
+import { Badge } from "@/components/ui/badge-custom"
 
-// Badge component for consistency
-function Badge({ icon, text }: { icon: React.ReactNode; text: string }) {
+// Visual component for the Docs Preview
+function DocsPreview({ activeTab }: { activeTab: number }) {
   return (
-    <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] overflow-hidden rounded-[90px] flex justify-start items-center gap-[8px] border border-[rgba(2,6,23,0.08)] shadow-xs">
-      <div className="w-[14px] h-[14px] relative overflow-hidden flex items-center justify-center">{icon}</div>
-      <div className="text-center flex justify-center flex-col text-[#37322F] text-xs font-medium leading-3 font-sans">
-        {text}
+    <div className="w-full h-full bg-[#1e1e2e] rounded-lg overflow-hidden flex flex-col border border-slate-700/50 shadow-2xl">
+      {/* Fake Browser Toolbar */}
+      <div className="h-10 bg-[#151520] border-b border-slate-700/50 flex items-center px-4 gap-2">
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-500/80" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+          <div className="w-3 h-3 rounded-full bg-green-500/80" />
+        </div>
+        <div className="flex-1 flex justify-center">
+          <div className="px-3 py-1 bg-[#1e1e2e] rounded-md text-[10px] text-slate-400 font-mono flex items-center gap-1.5 min-w-[200px] justify-center">
+            <svg className="w-3 h-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            docs.consonant.ai
+          </div>
+        </div>
+      </div>
+
+      {/* Content Area */}
+      <div className="flex-1 flex">
+        {/* Sidebar */}
+        <div className="w-48 bg-[#181825] border-r border-slate-700/30 p-4 hidden sm:flex flex-col gap-4">
+          <div className="flex flex-col gap-2 opacity-100 transition-opacity duration-300">
+            <div className={`h-2 w-16 rounded-full ${activeTab === 0 ? "bg-blue-500" : "bg-slate-700"} transition-colors`} />
+            <div className={`h-2 w-24 rounded-full ${activeTab === 0 ? "bg-slate-600" : "bg-slate-800"} transition-colors`} />
+            <div className={`h-2 w-20 rounded-full ${activeTab === 0 ? "bg-slate-600" : "bg-slate-800"} transition-colors`} />
+          </div>
+           <div className="flex flex-col gap-2 mt-2">
+            <div className={`h-2 w-12 rounded-full ${activeTab === 1 ? "bg-purple-500" : "bg-slate-700"} transition-colors`} />
+            <div className={`h-2 w-28 rounded-full ${activeTab === 1 ? "bg-slate-600" : "bg-slate-800"} transition-colors`} />
+            <div className={`h-2 w-24 rounded-full ${activeTab === 1 ? "bg-slate-600" : "bg-slate-800"} transition-colors`} />
+          </div>
+          <div className="flex flex-col gap-2 mt-2">
+            <div className={`h-2 w-20 rounded-full ${activeTab === 2 ? "bg-emerald-500" : "bg-slate-700"} transition-colors`} />
+            <div className={`h-2 w-16 rounded-full ${activeTab === 2 ? "bg-slate-600" : "bg-slate-800"} transition-colors`} />
+          </div>
+        </div>
+
+        {/* Main View */}
+        <div className="flex-1 p-6 relative overflow-hidden">
+          {activeTab === 0 && (
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="text-blue-400 text-sm font-mono mb-2">installation</div>
+              <div className="text-slate-100 text-lg font-semibold mb-4">Quickstart Guide</div>
+              <div className="bg-[#151520] rounded-lg p-4 font-mono text-xs text-slate-300 border border-slate-700/50">
+                <span className="text-slate-500"># Install the SDK</span>
+                <br />
+                <span className="text-purple-400">npm</span> install @consonant/sdk
+                <br /> <br />
+                <span className="text-slate-500"># Configure your client</span>
+                <br />
+                <span className="text-blue-400">export</span> CONSONANT_API_KEY=...
+              </div>
+            </div>
+          )}
+
+          {activeTab === 1 && (
+             <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <div className="text-purple-400 text-sm font-mono mb-2">guides</div>
+              <div className="text-slate-100 text-lg font-semibold mb-4">Spending Limits</div>
+              <div className="space-y-3">
+                <div className="h-2 w-full bg-slate-700 rounded-full" />
+                <div className="h-2 w-[90%] bg-slate-700 rounded-full" />
+                <div className="h-2 w-[95%] bg-slate-700 rounded-full" />
+                <div className="mt-4 p-3 bg-purple-500/10 border border-purple-500/20 rounded-md">
+                    <div className="h-2 w-32 bg-purple-400/40 rounded-full mb-2" />
+                    <div className="h-2 w-[80%] bg-purple-400/20 rounded-full" />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 2 && (
+             <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 h-full flex flex-col">
+              <div className="text-emerald-400 text-sm font-mono mb-2">api reference</div>
+              <div className="flex items-center gap-2 mb-4">
+                  <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-mono rounded">POST</span>
+                  <span className="text-slate-200 text-xs font-mono">/v1/balance/check</span>
+              </div>
+              <div className="flex-1 bg-[#151520] rounded-lg p-4 font-mono text-[10px] text-slate-300 border border-slate-700/50 overflow-hidden relative">
+                <div className="absolute top-0 right-0 p-2 text-slate-600 text-[9px]">JSON</div>
+                {"{"}
+                <div className="pl-4">
+                    <span className="text-blue-300">"allowed"</span>: <span className="text-emerald-400">true</span>,
+                    <br />
+                    <span className="text-blue-300">"remaining"</span>: <span className="text-orange-300">45000</span>,
+                    <br />
+                    <span className="text-blue-300">"reset_at"</span>: <span className="text-green-300">"2024-03-01..."</span>
+                </div>
+                {"}"}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
@@ -21,19 +111,19 @@ export default function DocumentationSection() {
 
   const cards = [
     {
-      title: "Pre-flight balance checks",
-      description: "Verify customer spending limits instantly\nbefore each AI request executes.",
-      image: "/modern-dashboard-interface-with-data-visualization.jpg",
+      title: "Quickstart Guides",
+      description: "Get up and running in minutes with our\ncopy-paste usage examples for every framework.",
+      color: "blue",
     },
     {
-      title: "Stream token tracking",
-      description: "Monitor token consumption in real-time\nand stop requests when limits are reached.",
-      image: "/analytics-dashboard.png",
+      title: "Deep Dive Concepts",
+      description: "Understand specific topics like token counting,\nleaky bucket algorithms, and cost attribution.",
+      color: "purple",
     },
     {
-      title: "Dashboard analytics",
-      description: "Track per-customer spending, profitability,\nand usage patterns with detailed insights.",
-      image: "/team-collaboration-interface-with-shared-workspace.jpg",
+      title: "Interactive API Reference",
+      description: "Test endpoints directly from your browser.\nTyped, documented, and predictable.",
+      color: "emerald",
     },
   ]
 
@@ -52,32 +142,37 @@ export default function DocumentationSection() {
   }
 
   return (
-    <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
+    <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center bg-white">
       {/* Header Section */}
       <div className="self-stretch px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
-        <div className="w-full max-w-[586px] px-6 py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-4 shadow-none">
+        <div className="w-full max-w-[586px] px-6 py-5 overflow-hidden rounded-lg flex flex-col justify-start items-center gap-4">
           <Badge
             icon={
-              <div className="w-[10.50px] h-[10.50px] outline outline-[1.17px] outline-[#37322F] outline-offset-[-0.58px] rounded-full"></div>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 1H9.5C10.05 1 10.5 1.45 10.5 2V10C10.5 10.55 10.05 11 9.5 11H2.5C1.95 11 1.5 10.5 1.5 10V2C1.5 1.45 1.95 1 2.5 1Z" stroke="#37322F" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4 3.5H8" stroke="#37322F" strokeWidth="1" strokeLinecap="round"/>
+                <path d="M4 6H8" stroke="#37322F" strokeWidth="1" strokeLinecap="round"/>
+                <path d="M4 8.5H6" stroke="#37322F" strokeWidth="1" strokeLinecap="round"/>
+              </svg>
             }
-            text="Platform Features"
+            text="Documentation"
           />
           <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            How Consonant Works
+            Built for developers
           </div>
           <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            Complete AI cost control from preflight to reconciliation
-            <br />
-            with transparent token accounting.
+            Comprehensive guides, interactive references, and idiomatic SDKs.
+            <br className="hidden md:block" />
+            Everything you need to ship confident AI products.
           </div>
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="self-stretch px-4 md:px-9 overflow-hidden flex justify-start items-center">
-        <div className="flex-1 py-8 md:py-11 flex flex-col md:flex-row justify-start items-center gap-6 md:gap-12">
+      <div className="self-stretch px-4 md:px-9 overflow-hidden flex justify-center items-center">
+        <div className="w-full max-w-[1060px] py-12 md:py-16 flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
           {/* Left Column - Feature Cards */}
-          <div className="w-full md:w-auto md:max-w-[400px] flex flex-col justify-center items-center gap-4 order-2 md:order-1">
+          <div className="w-full md:w-[360px] flex flex-col justify-center items-center gap-4">
             {cards.map((card, index) => {
               const isActive = index === activeCard
 
@@ -85,22 +180,28 @@ export default function DocumentationSection() {
                 <div
                   key={index}
                   onClick={() => handleCardClick(index)}
-                  className={`w-full overflow-hidden flex flex-col justify-start items-start transition-all duration-300 cursor-pointer ${
+                  className={`w-full overflow-hidden flex flex-col justify-start items-start transition-all duration-300 cursor-pointer rounded-lg ${
                     isActive
-                      ? "bg-white shadow-[0px_0px_0px_0.75px_#E0DEDB_inset]"
-                      : "border border-[rgba(2,6,23,0.08)]"
+                      ? "bg-slate-50 shadow-sm ring-1 ring-slate-200"
+                      : "hover:bg-slate-50/50"
                   }`}
                 >
                   <div
-                    className={`w-full h-0.5 bg-[rgba(50,45,43,0.08)] overflow-hidden ${isActive ? "opacity-100" : "opacity-0"}`}
+                    className={`w-full h-0.5 bg-slate-100 overflow-hidden ${isActive ? "opacity-100" : "opacity-0"}`}
                   >
                     <div
                       key={animationKey}
-                      className="h-0.5 bg-[#322D2B] animate-[progressBar_5s_linear_forwards] will-change-transform"
+                      className="h-0.5 bg-[#37322F] animate-[progressBar_5s_linear_forwards] will-change-transform"
                     />
                   </div>
                   <div className="px-6 py-5 w-full flex flex-col gap-2">
-                    <div className="self-stretch flex justify-center flex-col text-[#49423D] text-sm font-semibold leading-6 font-sans">
+                    <div className="self-stretch flex justify-start items-center gap-2 text-[#49423D] text-sm font-semibold leading-6 font-sans">
+                         {isActive && (
+                            <div className={`w-1.5 h-1.5 rounded-full ${
+                                card.color === "blue" ? "bg-blue-500" :
+                                card.color === "purple" ? "bg-purple-500" : "bg-emerald-500"
+                            }`} />
+                         )}
                       {card.title}
                     </div>
                     <div className="self-stretch text-[#605A57] text-[13px] font-normal leading-[22px] font-sans whitespace-pre-line">
@@ -113,18 +214,8 @@ export default function DocumentationSection() {
           </div>
 
           {/* Right Column - Image */}
-          <div className="w-full md:w-auto rounded-lg flex flex-col justify-center items-center gap-2 order-1 md:order-2 md:px-0 px-[00]">
-            <div className="w-full md:w-[580px] h-[250px] md:h-[420px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-lg flex flex-col justify-start items-start">
-              <div
-                className={`w-full h-full transition-all duration-300 ${
-                  activeCard === 0
-                    ? "bg-gradient-to-br from-blue-50 to-blue-100"
-                    : activeCard === 1
-                      ? "bg-gradient-to-br from-purple-50 to-purple-100"
-                      : "bg-gradient-to-br from-green-50 to-green-100"
-                }`}
-              />
-            </div>
+          <div className="w-full md:flex-1 h-[300px] md:h-[400px] rounded-xl flex flex-col justify-center items-center shadow-2xl shadow-slate-200/50 transform transition-transform duration-500 hover:scale-[1.01]">
+            <DocsPreview activeTab={activeCard} />
           </div>
         </div>
       </div>
