@@ -1,6 +1,7 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge-custom"
+import Image from "next/image"
 import { useEffect, useState } from "react"
 
 // Animated balance meter component
@@ -426,21 +427,24 @@ export function BentoGridSection() {
               <div className="grid grid-cols-3 gap-4">
                 {/* Provider icons */}
                 {[
-                  { name: 'OpenAI', color: '#10a37f' },
-                  { name: 'Anthropic', color: '#cc785c' },
-                  { name: 'Google', color: '#4285f4' },
-                  { name: 'Groq', color: '#f55036' },
-                  { name: 'Mistral', color: '#ff7000' },
-                  { name: 'Cohere', color: '#39594d' },
+                  { name: 'OpenAI', src: '/openai-icon.svg' },
+                  { name: 'Anthropic', src: '/anthropic-Icon.svg' },
+                  { name: 'Google', src: '/google-gemini-icon.svg' },
+                  { name: 'Groq', src: '/grok-ai-icon.svg' },
+                  { name: 'Helicone', src: '/helicone.png' },
+                  { name: 'Portkey', src: '/portkey.jpeg' },
                 ].map((provider, i) => (
                   <div 
                     key={i}
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white shadow-sm border border-slate-200 flex items-center justify-center hover:scale-105 transition-transform cursor-pointer"
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white shadow-sm border border-slate-200 flex items-center justify-center hover:scale-105 transition-transform cursor-pointer overflow-hidden p-2"
                     title={provider.name}
                   >
-                    <div 
-                      className="w-6 h-6 sm:w-7 sm:h-7 rounded-full"
-                      style={{ backgroundColor: provider.color }}
+                    <Image
+                      src={provider.src}
+                      alt={provider.name}
+                      width={28}
+                      height={28}
+                      className="object-contain w-full h-full"
                     />
                   </div>
                 ))}

@@ -27,21 +27,20 @@ interface SearchProps {
 
 // Reuse the navigation structure from sidebar.tsx or import it
 // Ideally this would be a shared constant or generated from content
+// Reuse the navigation structure from sidebar.tsx or import it
+// Ideally this would be a shared constant or generated from content
 const navItems = [
   { title: "Introduction", href: "/docs" },
   { title: "Quick Start", href: "/docs/quickstart" },
   { title: "Installation", href: "/docs/installation" },
   { title: "TypeScript SDK", href: "/docs/sdk/typescript" },
   { title: "Python SDK", href: "/docs/sdk/python" },
-  { title: "Next.js Integration", href: "/docs/integrations/nextjs" },
-  { title: "Express Integration", href: "/docs/integrations/express" },
   { title: "How It Works", href: "/docs/concepts/how-it-works" },
   { title: "Grains & Pricing", href: "/docs/concepts/grains" },
   { title: "Customer Tracking", href: "/docs/concepts/customers" },
   { title: "Real-time Enforcement", href: "/docs/concepts/enforcement" },
   { title: "SDK Configuration", href: "/docs/api/configuration" },
   { title: "Balance Check", href: "/docs/api/balance-check" },
-  { title: "Webhooks", href: "/docs/api/webhooks" },
   { title: "Error Handling", href: "/docs/api/errors" },
 ];
 
