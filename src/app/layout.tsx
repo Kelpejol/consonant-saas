@@ -45,9 +45,9 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  title: "Brillance - Effortless Custom Contract Billing",
+  title: "Consonant - Real-time AI Cost Enforcement",
   description:
-    "Streamline your billing process with seamless automation for every custom contract, tailored by Brillance.",
+    "Stop losing money on AI overages. Track costs per customer, enforce budgets in real-time, and protect your margins with a single line of code.",
 }
 
 export default function RootLayout({
