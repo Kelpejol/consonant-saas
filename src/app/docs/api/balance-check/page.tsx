@@ -1,3 +1,5 @@
+import { CodeBlock } from "@/components/ui/code-block"
+
 export default function BalanceCheckPage() {
   return (
     <div className="space-y-6">
@@ -17,23 +19,27 @@ export default function BalanceCheckPage() {
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Request</h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-100 font-mono my-4">
-          <pre>{`{
+        <CodeBlock
+          language="json"
+          filename="request.json"
+          code={`{
   "customer_id": "cust_12345",
   "requested_grains": 500
-}`}</pre>
-        </div>
+}`}
+        />
       </div>
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Response</h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-100 font-mono my-4">
-          <pre>{`{
+        <CodeBlock
+          language="json"
+          filename="response.json"
+          code={`{
   "allowed": true,
   "remaining_balance": 24500,
   "reservation_id": "res_abc789"
-}`}</pre>
-        </div>
+}`}
+        />
         <p className="text-gray-600 dark:text-gray-400">
             If <code>allowed</code> is false, you should block the request.
         </p>

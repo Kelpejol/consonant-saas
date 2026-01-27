@@ -19,8 +19,8 @@ export default function DocsLayout({
       {/* Mobile Top Bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background/80 backdrop-blur-sm z-50 flex items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-           <div className="bg-black p-1.5 rounded-md">
-             <Image src="/consonant.png" alt="Consonant" width={80} height={24} className="h-5 w-auto" />
+           <div className="bg-black p-2 rounded-md">
+             <Image src="/consonant.png" alt="Consonant" width={120} height={36} className="h-7 w-auto" />
            </div>
         </Link>
         <div className="flex items-center gap-2">
@@ -48,21 +48,15 @@ export default function DocsLayout({
         <div className="h-full overflow-y-auto py-6 px-6 flex flex-col">
           <div className="flex items-center justify-between mb-8">
             <Link href="/" className="flex items-center gap-2">
-                <div className="bg-black p-1.5 rounded-md shadow-sm">
-                    <Image src="/consonant.png" alt="Consonant" width={100} height={32} className="h-6 w-auto" />
+                <div className="bg-black p-2 rounded-md shadow-sm transition-transform hover:scale-105">
+                    <Image src="/consonant.png" alt="Consonant" width={140} height={40} className="h-8 w-auto" />
                 </div>
             </Link>
+            <ModeToggle />
           </div>
           
           <div className="flex-1">
             <DocsSidebar />
-          </div>
-
-          <div className="pt-6 mt-auto border-t border-sidebar-border">
-             <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground font-medium">Theme</span>
-                <ModeToggle />
-             </div>
           </div>
         </div>
       </aside>

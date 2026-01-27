@@ -1,3 +1,5 @@
+import { CodeBlock } from "@/components/ui/code-block"
+
 export default function ErrorsPage() {
   return (
     <div className="space-y-6">
@@ -36,8 +38,10 @@ export default function ErrorsPage() {
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Handling in Code</h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-100 font-mono my-4">
-          <pre>{`try {
+        <CodeBlock
+          language="typescript"
+          filename="error-handling.ts"
+          code={`try {
   await client.chat.completions.create({...});
 } catch (error) {
   if (error.code === 'insufficient_balance') {
@@ -45,8 +49,8 @@ export default function ErrorsPage() {
     return res.status(402).json({ error: 'Please upgrade your plan' });
   }
   throw error;
-}`}</pre>
-        </div>
+}`}
+        />
       </div>
     </div>
   )

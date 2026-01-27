@@ -1,3 +1,5 @@
+import { CodeBlock } from "@/components/ui/code-block"
+
 export default function CustomerTrackingPage() {
   return (
     <div className="space-y-6">
@@ -13,13 +15,15 @@ export default function CustomerTrackingPage() {
           When you initialize the Consonant SDK, you provide a <code>customerIdExtractor</code> function. This function runs for every request and extracts a unique identifier for the customer (e.g., user ID, org ID, API key).
         </p>
 
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-100 font-mono my-4">
-          <pre>{`const consonant = new Consonant({
+        <CodeBlock 
+          language="typescript"
+          filename="initialization.ts"
+          code={`const consonant = new Consonant({
   apiKey: process.env.CONSONANT_API_KEY,
   // Extract customer ID from your request context
   customerIdExtractor: (ctx) => ctx.user.id
-})`}</pre>
-        </div>
+})`}
+        />
 
         <p className="text-gray-600 dark:text-gray-400">
           This ID is used to:
@@ -36,9 +40,11 @@ export default function CustomerTrackingPage() {
         <p className="text-gray-600 dark:text-gray-400">
           You can track usage at multiple levels by using composite IDs. For example, to track per-user usage within an organization:
         </p>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-100 font-mono my-4">
-          <pre>{`customerIdExtractor: (ctx) => \`\${ctx.org.id}:\${ctx.user.id}\``}</pre>
-        </div>
+        <CodeBlock 
+           language="typescript" 
+           filename="hierarchical.ts"
+           code={`customerIdExtractor: (ctx) => \`\${ctx.org.id}:\${ctx.user.id}\``}
+        />
         <p className="text-gray-600 dark:text-gray-400">
             This effectively creates a separate ledger for every user in every organization.
         </p>

@@ -1,3 +1,5 @@
+import { CodeBlock } from "@/components/ui/code-block"
+
 export default function ConfigurationPage() {
   return (
     <div className="space-y-6">
@@ -9,16 +11,18 @@ export default function ConfigurationPage() {
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Initialization</h2>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-100 font-mono my-4">
-          <pre>{`import { Consonant } from '@consonant/sdk';
+        <CodeBlock
+          language="typescript"
+          filename="config.ts"
+          code={`import { Consonant } from '@consonant/sdk';
 
 const consonant = new Consonant({
   apiKey: string,           // Your Consonant API Key
   service?: string,         // Logical service name (default: "default")
   timeout?: number,         // Request timeout in ms (default: 1000)
   customerIdExtractor?: (ctx: any) => string // Function to resolve Customer ID
-});`}</pre>
-        </div>
+});`}
+        />
       </div>
 
       <div className="mt-8 space-y-4">
