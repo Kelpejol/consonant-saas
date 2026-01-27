@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
 
 interface FeatureCardProps {
   title: string
@@ -250,7 +251,12 @@ export function HeroSection() {
       <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative z-10 mt-8 sm:mt-10 md:mt-12 lg:mt-14">
         <div className="flex justify-center items-center gap-3 sm:gap-4">
           {/* Primary CTA */}
-          <div className="h-11 sm:h-12 md:h-[52px] px-6 sm:px-8 md:px-10 py-2 relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset,0px_4px_12px_rgba(0,0,0,0.15)] overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-[#2a2523] transition-colors group">
+          <a
+            href="https://tally.so/r/eqaogj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-11 sm:h-12 md:h-[52px] px-6 sm:px-8 md:px-10 py-2 relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset,0px_4px_12px_rgba(0,0,0,0.15)] overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-[#2a2523] transition-colors group"
+          >
             <div className="w-full h-[41px] absolute left-0 top-0 bg-gradient-to-b from-[rgba(255,255,255,0.08)] to-transparent mix-blend-overlay"></div>
             <div className="flex items-center gap-2 text-white text-sm sm:text-base font-medium font-sans">
               <span>Join waitlist</span>
@@ -258,14 +264,17 @@ export function HeroSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </div>
-          </div>
+          </a>
           
           {/* Secondary CTA */}
-          <div className="h-11 sm:h-12 md:h-[52px] px-5 sm:px-6 md:px-8 py-2 bg-white border border-[#E0DEDB] shadow-sm rounded-full flex justify-center items-center cursor-pointer hover:bg-[#FAFAF9] transition-colors">
+          <Link
+            href="/docs"
+            className="h-11 sm:h-12 md:h-[52px] px-5 sm:px-6 md:px-8 py-2 bg-white border border-[#E0DEDB] shadow-sm rounded-full flex justify-center items-center cursor-pointer hover:bg-[#FAFAF9] transition-colors"
+          >
             <div className="flex items-center gap-2 text-[#49423D] text-sm sm:text-base font-medium font-sans">
               <span>View docs</span>
             </div>
-          </div>
+          </Link>
         </div>
         
         {/* Trust indicator */}
