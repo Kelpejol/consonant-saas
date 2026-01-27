@@ -104,7 +104,7 @@ export default function UseCasesSection() {
   ]
 
   return (
-    <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center bg-[#FAFAF9]">
+    <div id="use-cases" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center bg-[#FAFAF9]">
       {/* Header Section */}
       <div className="self-stretch px-6 md:px-24 py-12 md:py-16 flex justify-center items-center gap-6">
         <div className="w-full max-w-[640px] px-6 py-5 overflow-hidden rounded-lg flex flex-col justify-start items-center gap-4">
