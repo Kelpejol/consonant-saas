@@ -5,7 +5,7 @@ export default function ErrorsPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Error Handling</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         How to handle errors returned by the Consonant SDK or API.
       </p>
 
@@ -22,14 +22,14 @@ export default function ErrorsPage() {
 
             <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-4 bg-white dark:bg-gray-900">
                 <h3 className="font-mono text-gray-900 dark:text-gray-100 font-bold mb-2">AuthenticationError</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <p className="text-gray-600 dark:text-gray-200 text-sm">
                     Thrown if your API Key is invalid. Check your environment variables.
                 </p>
             </div>
 
              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-4 bg-white dark:bg-gray-900">
                 <h3 className="font-mono text-gray-900 dark:text-gray-100 font-bold mb-2">RateLimitExceededError</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <p className="text-gray-600 dark:text-gray-200 text-sm">
                     Thrown if you are hitting the Consonant API too fast (unlikely for standard usage).
                 </p>
             </div>

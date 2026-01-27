@@ -6,7 +6,7 @@ export default function PythonSDKPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Python SDK</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         Complete reference for the Consonant Python SDK.
       </p>
 
@@ -154,7 +154,7 @@ response = await tracked.chat.completions.create(
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Type Hints</h2>
-        <p className="text-gray-600 dark:text-gray-400">The SDK is fully typed and works with mypy and pyright:</p>
+        <p className="text-gray-600 dark:text-gray-200">The SDK is fully typed and works with mypy and pyright:</p>
         <CodeBlock
             language="python"
             code="from consonant import Consonant, ConsonantConfig, CustomerBalance"

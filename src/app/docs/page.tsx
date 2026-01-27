@@ -6,23 +6,23 @@ export default function IntroductionPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Introduction to Consonant</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         Consonant is a <strong>real-time AI cost enforcement platform</strong> designed for B2B SaaS companies. It sits between your application and AI providers, tracking costs per customer and enforcing spending limits in real-time.
       </p>
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">The Problem We Solve</h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-200">
           When you add AI features to your SaaS product, you typically charge customers a flat monthly rate (e.g., $50/user). But AI API costs are <strong>completely variable</strong>—some customers cost 10x or even 100x more than others.
         </p>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-200">
           Without Consonant, you discover these "vampire customers" 30 days later when your AI bill arrives. By then, you've already lost money.
         </p>
       </div>
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">How Consonant Works</h2>
-        <ol className="list-decimal pl-6 space-y-2 text-gray-600 dark:text-gray-400">
+        <ol className="list-decimal pl-6 space-y-2 text-gray-600 dark:text-gray-200">
           <li><strong>Install our SDK</strong> — Wrap your AI client with 3 lines of code</li>
           <li><strong>Track automatically</strong> — Every request is attributed to a customer</li>
           <li><strong>Enforce limits</strong> — Block requests when customers exceed their budget</li>
@@ -51,7 +51,7 @@ const response = await ai.chat.completions.create({
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Key Features</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-200">
           <li><strong>Per-customer profitability</strong> — See exactly which customers are profitable</li>
           <li><strong>Real-time enforcement</strong> — Block requests when budgets run out</li>
           <li><strong>Automated model switching</strong> — Downgrade expensive users to cheaper models</li>

@@ -5,7 +5,7 @@ export default function BalanceCheckPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Balance Check API</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         Programmatically check a customer's balance or reserve funds.
       </p>
 
@@ -40,7 +40,7 @@ export default function BalanceCheckPage() {
   "reservation_id": "res_abc789"
 }`}
         />
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-200">
             If <code>allowed</code> is false, you should block the request.
         </p>
       </div>

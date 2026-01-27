@@ -6,7 +6,7 @@ export default function InstallationPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Installation</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         This guide covers all installation options for Consonant SDKs.
       </p>
 
@@ -23,7 +23,7 @@ export default function InstallationPage() {
         <CodeBlock language="bash" code="pnpm add @consonant/sdk" />
 
         <h3 className="text-xl font-medium text-gray-900 dark:text-white mt-4">Requirements</h3>
-        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-200">
             <li>Node.js 18.0.0 or higher</li>
             <li>TypeScript 5.0+ (optional, but recommended)</li>
         </ul>
@@ -39,7 +39,7 @@ export default function InstallationPage() {
         <CodeBlock language="bash" code="poetry add consonant-sdk" />
 
         <h3 className="text-xl font-medium text-gray-900 dark:text-white mt-4">Requirements</h3>
-        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-200">
             <li>Python 3.9 or higher</li>
             <li>Compatible with pip, poetry, pipenv, and uv</li>
         </ul>
@@ -47,7 +47,7 @@ export default function InstallationPage() {
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Environment Variables</h2>
-        <p className="text-gray-600 dark:text-gray-400">After installation, set up your environment variables:</p>
+        <p className="text-gray-600 dark:text-gray-200">After installation, set up your environment variables:</p>
         
         <CodeBlock 
           language="bash" 
@@ -56,7 +56,7 @@ export default function InstallationPage() {
         />
         
         <h3 className="text-xl font-medium text-gray-900 dark:text-white mt-4">Vercel</h3>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-200">
             In your Vercel dashboard, add <code>CONSONANT_API_KEY</code> to your environment variables.
         </p>
 
@@ -70,7 +70,7 @@ export default function InstallationPage() {
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Verify Installation</h2>
-        <p className="text-gray-600 dark:text-gray-400">Test that everything is working:</p>
+        <p className="text-gray-600 dark:text-gray-200">Test that everything is working:</p>
         
         <CodeBlock
           language="typescript"

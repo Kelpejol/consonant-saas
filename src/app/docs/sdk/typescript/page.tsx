@@ -6,7 +6,7 @@ export default function TypeScriptSDKPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">TypeScript SDK</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         Complete reference for the Consonant TypeScript SDK.
       </p>
 
@@ -121,7 +121,7 @@ try {
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Manual Tracking</h2>
-        <p className="text-gray-600 dark:text-gray-400">For advanced use cases, you can track requests manually:</p>
+        <p className="text-gray-600 dark:text-gray-200">For advanced use cases, you can track requests manually:</p>
         <CodeBlock
           language="typescript"
           filename="manual.ts"

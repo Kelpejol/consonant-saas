@@ -6,13 +6,13 @@ export default function QuickStartPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Quick Start</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         Get Consonant up and running in your application in under 5 minutes.
       </p>
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Prerequisites</h2>
-        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-200">
           <li>Node.js 18+ or Python 3.9+</li>
           <li>An existing application using OpenAI, Anthropic, or Google AI</li>
           <li>A Consonant account (<Link href="/signup" className="text-blue-600 dark:text-blue-400 hover:underline">sign up here</Link>)</li>
@@ -21,7 +21,7 @@ export default function QuickStartPage() {
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Step 1: Install the SDK</h2>
-        <p className="text-gray-600 dark:text-gray-400">Choose your language:</p>
+        <p className="text-gray-600 dark:text-gray-200">Choose your language:</p>
         
         <h3 className="text-xl font-medium text-gray-900 dark:text-white mt-4">TypeScript / JavaScript</h3>
         <CodeBlock
@@ -46,7 +46,7 @@ poetry add consonant-sdk`}
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Step 2: Get Your API Key</h2>
-        <ol className="list-decimal pl-6 space-y-2 text-gray-600 dark:text-gray-400">
+        <ol className="list-decimal pl-6 space-y-2 text-gray-600 dark:text-gray-200">
           <li>Log in to the <Link href="/dashboard" className="text-blue-600 dark:text-blue-400 hover:underline">Consonant Dashboard</Link></li>
           <li>Navigate to <strong>Settings → API Keys</strong></li>
           <li>Click <strong>Generate New Key</strong></li>
@@ -90,7 +90,7 @@ const trackedAI = consonant.wrap(openai)`}
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Step 4: Use the Wrapped Client</h2>
-        <p className="text-gray-600 dark:text-gray-400">Replace your existing AI client with the wrapped version:</p>
+        <p className="text-gray-600 dark:text-gray-200">Replace your existing AI client with the wrapped version:</p>
         
         <CodeBlock
           language="typescript"
@@ -109,17 +109,17 @@ const response = await trackedAI.chat.completions.create({
   userId: 'customer_123' // Context passed to customerIdExtractor
 })`}
         />
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-200">
           That's it! Every request is now tracked and attributed to the customer.
         </p>
       </div>
 
       <div className="mt-8 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Step 5: View Your Dashboard</h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-200">
           Head to the <Link href="/dashboard" className="text-blue-600 dark:text-blue-400 hover:underline">Dashboard</Link> to see:
         </p>
-        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-200">
           <li>Real-time cost tracking per customer</li>
           <li>Margin calculations</li>
           <li>Usage analytics</li>

@@ -5,7 +5,7 @@ export default function ConfigurationPage() {
     <div className="space-y-6">
       <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">SDK Configuration</h1>
       
-      <p className="text-lg text-gray-600 dark:text-gray-400">
+      <p className="text-lg text-gray-600 dark:text-gray-200">
         Reference guide for configuring the Consonant SDK.
       </p>
 
@@ -30,7 +30,7 @@ const consonant = new Consonant({
         
         <div className="overflow-x-auto">
             <table className="min-w-full text-left text-sm whitespace-nowrap">
-            <thead className="uppercase tracking-wider border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 text-gray-500 dark:text-gray-400 font-medium">
+            <thead className="uppercase tracking-wider border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 text-gray-500 dark:text-gray-200 font-medium">
                 <tr>
                 <th scope="col" className="px-6 py-4">Option</th>
                 <th scope="col" className="px-6 py-4">Type</th>
@@ -43,19 +43,19 @@ const consonant = new Consonant({
                     <td className="px-6 py-4 font-mono text-gray-900 dark:text-gray-200">apiKey</td>
                     <td className="px-6 py-4 font-mono text-purple-600 dark:text-purple-400">string</td>
                     <td className="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-medium">Yes</td>
-                    <td className="px-6 py-4 text-gray-600 dark:text-gray-400">Secret key from your dashboard.</td>
+                    <td className="px-6 py-4 text-gray-600 dark:text-gray-200">Secret key from your dashboard.</td>
                 </tr>
                 <tr>
                     <td className="px-6 py-4 font-mono text-gray-900 dark:text-gray-200">service</td>
                     <td className="px-6 py-4 font-mono text-purple-600 dark:text-purple-400">string</td>
                     <td className="px-6 py-4 text-gray-400 dark:text-gray-600">No</td>
-                    <td className="px-6 py-4 text-gray-600 dark:text-gray-400">Identify this service in logs.</td>
+                    <td className="px-6 py-4 text-gray-600 dark:text-gray-200">Identify this service in logs.</td>
                 </tr>
                  <tr>
                     <td className="px-6 py-4 font-mono text-gray-900 dark:text-gray-200">debug</td>
                     <td className="px-6 py-4 font-mono text-purple-600 dark:text-purple-400">boolean</td>
                     <td className="px-6 py-4 text-gray-400 dark:text-gray-600">No</td>
-                    <td className="px-6 py-4 text-gray-600 dark:text-gray-400">Enable verbose logging.</td>
+                    <td className="px-6 py-4 text-gray-600 dark:text-gray-200">Enable verbose logging.</td>
                 </tr>
             </tbody>
             </table>

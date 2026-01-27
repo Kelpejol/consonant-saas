@@ -24,10 +24,8 @@ export function CodeBlock({ language = "typescript", filename = "example.ts", co
     let escaped = line
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
+      .replace(/>/g, "&gt;");
+      
     // Colors roughly matching VS Code / Dracular
     // Keywords (purple)
     escaped = escaped.replace(
