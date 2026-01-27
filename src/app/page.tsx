@@ -15,7 +15,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export default function LandingPage() {
   return (
-    <ThemeProvider forcedTheme="light">
       <div className="w-full min-h-screen pt-12 sm:pt-14 md:pt-16 lg:pt-[84px] relative bg-[#F7F5F3] overflow-x-hidden flex flex-col justify-start items-center">
         <div className="relative flex flex-col justify-start items-center w-full">
           {/* Main container with proper margins */}
@@ -62,7 +61,6 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </div>
-    </ThemeProvider>
+    </div>
   )
 }
