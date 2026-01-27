@@ -36,7 +36,7 @@ export function Navbar() {
                 Open Source
               </div>
             </Link>
-            <Link href="/docs" className="flex justify-start items-center group">
+            <Link href="/docs" className="flex justify-start items-center group cursor-pointer">
               <div className="flex flex-col justify-center text-white/80 text-[13px] lg:text-[14px] font-medium leading-[14px] font-sans group-hover:text-white transition-colors">
                 Docs
               </div>
@@ -62,11 +62,17 @@ export function Navbar() {
             </button>
 
             <div className="hidden md:flex h-8 sm:h-9 md:h-10 justify-start items-start gap-2 sm:gap-3">
-            <Link href="/login" className="px-4 py-2 bg-white hover:bg-slate-100 transition-colors shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center">
-                <div className="flex flex-col justify-center text-[#37322F] text-[13px] md:text-[14px] font-semibold leading-5 font-sans">
-                Log in
+            <a 
+              href="https://tally.so/r/eqaogj"  
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer px-4 py-2 bg-white hover:bg-slate-100 transition-colors shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center">
+                <div className="flex flex-col justify-center text-[#37322F] text-[13px] md:text-14px font-semibold leading-5 font-sans">
+                Join waitlist
                 </div>
-            </Link>
+            </a>
+
+            
             </div>
         </div>
 
@@ -102,13 +108,15 @@ export function Navbar() {
                     Docs
                 </Link>
                 <div className="h-[1px] bg-white/10 my-1 mx-4" />
-                <Link 
-                    href="/login" 
-                    className="p-3 m-2 text-center bg-white text-black font-semibold rounded-xl hover:bg-slate-100 transition-colors"
-                     onClick={() => setIsMobileMenuOpen(false)}
+                <a
+                  href="https://tally.so/r/eqaogj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer p-3 m-2 text-center bg-white text-black font-semibold rounded-xl hover:bg-slate-100 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
-                    Log in
-                </Link>
+                  Join waitlist
+                </a>
             </div>
         )}
       </div>

@@ -40,18 +40,20 @@ export default function CTASection() {
           <div className="w-full max-w-[497px] flex flex-col justify-center items-center gap-4">
             <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
               {/* Primary CTA */}
-              <Link 
-                href="/signup"
+              <a 
+                href="https://tally.so/r/eqaogj"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="h-12 px-8 py-2 relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset,0px_4px_12px_rgba(0,0,0,0.15)] overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-[#2a2523] transition-colors group"
               >
                 <div className="w-full h-[41px] absolute left-0 top-0 bg-gradient-to-b from-[rgba(255,255,255,0.08)] to-transparent mix-blend-overlay"></div>
                 <div className="flex items-center gap-2 text-white text-[15px] font-medium leading-5 font-sans">
-                  <span>Get started free</span>
+                  <span>Join waitlist</span>
                   <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
-              </Link>
+              </a>
 
               {/* Secondary CTA */}
               <Link
