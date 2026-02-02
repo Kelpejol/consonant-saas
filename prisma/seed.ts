@@ -42,17 +42,19 @@ async function main() {
     const demoKey = "con_demo_key_123456789"
     const demoKeyHash = crypto.createHash('sha256').update(demoKey).digest('hex')
 
-    await prisma.apiKey.upsert({
+    const apiKey = await prisma.apiKey.upsert({
         where: { key: demoKey },
         update: { organizationId: org.id },
         create: {
             name: "Demo Key",
             key: demoKey,
             maskedKey: "con_demo...",
-            apiKeyHash: demoKeyHash,
             organizationId: org.id,
         }
     })
+
+    // Manually update the apiKeyHash using raw SQL if needed
+    await prisma.$executeRaw`UPDATE api_keys SET api_key_hash = ${demoKeyHash} WHERE id = ${apiKey.id}`
     await redis.set(`apikey:${demoKeyHash}`, org.id)
 
     // 4. Create Customers
