@@ -57,22 +57,26 @@ function DocsPreview({ activeTab }: { activeTab: number }) {
                 <br /> <br />
                 <span className="text-slate-500"># Configure your client</span>
                 <br />
-                <span className="text-blue-400">export</span> CONSONANT_API_KEY=...
+                <span className="text-blue-400">export</span> CONSONANT_USER_TOKEN=...
               </div>
             </div>
           )}
 
           {activeTab === 1 && (
-             <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="text-purple-400 text-sm font-mono mb-2">guides</div>
-              <div className="text-slate-100 text-lg font-semibold mb-4">Spending Limits</div>
-              <div className="space-y-3">
-                <div className="h-2 w-full bg-slate-700 rounded-full" />
-                <div className="h-2 w-[90%] bg-slate-700 rounded-full" />
-                <div className="h-2 w-[95%] bg-slate-700 rounded-full" />
-                <div className="mt-4 p-3 bg-purple-500/10 border border-purple-500/20 rounded-md">
-                    <div className="h-2 w-32 bg-purple-400/40 rounded-full mb-2" />
-                    <div className="h-2 w-[80%] bg-purple-400/20 rounded-full" />
+              <div className="text-slate-100 text-lg font-semibold mb-3">Unified AI Access</div>
+              <div className="space-y-4">
+                <div className="bg-slate-800/40 p-3 rounded-lg border border-slate-700/50">
+                  <div className="text-emerald-400 text-[10px] font-bold uppercase mb-1">How it works</div>
+                  <p className="text-slate-300 text-[11px] leading-relaxed">
+                    Users connect their Consonant account to your platform. They manage their own AI provider subscriptions, while you get a unified API to interact with any model.
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                   <div className="flex-1 h-1.5 bg-slate-700 rounded-full" />
+                   <div className="flex-1 h-1.5 bg-slate-700 rounded-full" />
+                   <div className="flex-1 h-1.5 bg-slate-700 rounded-full opacity-50" />
                 </div>
               </div>
             </div>
@@ -82,20 +86,19 @@ function DocsPreview({ activeTab }: { activeTab: number }) {
              <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 h-full flex flex-col">
               <div className="text-emerald-400 text-sm font-mono mb-2">api reference</div>
               <div className="flex items-center gap-2 mb-4">
-                  <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-mono rounded">POST</span>
-                  <span className="text-slate-200 text-xs font-mono">/v1/balance/check</span>
+                  <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-mono rounded">GET</span>
+                  <span className="text-slate-200 text-xs font-mono">/v1/user/stats</span>
               </div>
-              <div className="flex-1 bg-[#151520] rounded-lg p-4 font-mono text-[10px] text-slate-300 border border-slate-700/50 overflow-hidden relative">
-                <div className="absolute top-0 right-0 p-2 text-slate-600 text-[9px]">JSON</div>
-                {"{"}
-                <div className="pl-4">
-                    <span className="text-blue-300">"allowed"</span>: <span className="text-emerald-400">true</span>,
-                    <br />
-                    <span className="text-blue-300">"remaining"</span>: <span className="text-orange-300">45000</span>,
-                    <br />
-                    <span className="text-blue-300">"reset_at"</span>: <span className="text-green-300">"2024-03-01..."</span>
+              <div className="flex-1 bg-[#151520] rounded-lg p-5 font-mono text-[11px] text-slate-300 border border-slate-700/50 overflow-hidden relative shadow-inner">
+                <div className="absolute top-0 right-0 p-3 text-slate-600 text-[9px] font-bold">JSON RESPONSE</div>
+                <div className="text-blue-400">{"{"}</div>
+                <div className="pl-5 space-y-1">
+                    <div><span className="text-indigo-300">"status"</span>: <span className="text-emerald-400">"active"</span>,</div>
+                    <div><span className="text-indigo-300">"tokens"</span>: <span className="text-amber-400">1240000</span>,</div>
+                    <div><span className="text-indigo-300">"revenue"</span>: <span className="text-emerald-400">0.30</span>,</div>
+                    <div><span className="text-indigo-300">"provider"</span>: <span className="text-slate-400">"managed"</span></div>
                 </div>
-                {"}"}
+                <div className="text-blue-400">{"}"}</div>
               </div>
             </div>
           )}
@@ -117,7 +120,7 @@ export default function DocumentationSection() {
     },
     {
       title: "Deep Dive Concepts",
-      description: "Understand specific topics like token counting,\nleaky bucket algorithms, and cost attribution.",
+      description: "Understand specific topics like token counting,\nrevenue share mechanics, and provider routing.",
       color: "purple",
     },
     {

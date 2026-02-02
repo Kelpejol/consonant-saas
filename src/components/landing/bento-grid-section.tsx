@@ -25,45 +25,62 @@ function BalanceMeter() {
   }, [])
   
   return (
-    <div className="w-full h-full bg-gradient-to-br from-slate-50 to-white rounded-lg p-6 flex flex-col justify-center items-center border border-slate-200">
+    <div className="w-full h-full bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] rounded-xl p-6 flex flex-col justify-center items-center border border-slate-200 shadow-inner">
       {/* App header */}
-      <div className="w-full mb-6 pb-4 border-b border-slate-200">
-        <div className="text-sm font-semibold text-[#37322F]">YourApp.ai</div>
-        <div className="text-xs text-slate-500 mt-1">AI-powered writing assistant</div>
+      <div className="w-full mb-6 pb-4 border-b border-slate-200/60 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded bg-indigo-600 flex items-center justify-center text-white text-[10px] font-bold">Y</div>
+          <div>
+            <div className="text-[12px] font-bold text-[#37322F]">YourApp.ai</div>
+            <div className="text-[10px] text-slate-400">Settings &rsaquo; Integrations</div>
+          </div>
+        </div>
+        <div className="w-2 h-2 rounded-full bg-slate-300" />
       </div>
       
       {/* OAuth button */}
-      <div className="w-full max-w-[280px]">
+      <div className="w-full max-w-[280px] space-y-4">
         <button 
-          className={`w-full px-4 py-3 rounded-lg border-2 transition-all ${
+          className={`w-full px-4 py-3.5 rounded-xl border-2 transition-all duration-500 shadow-sm flex items-center justify-center gap-3 group active:scale-[0.98] ${
             isConnected 
-              ? 'bg-emerald-50 border-emerald-500 text-emerald-700' 
-              : 'bg-white border-slate-300 text-[#37322F] hover:border-[#37322F]'
+              ? 'bg-emerald-50 border-emerald-500 text-emerald-700 shadow-emerald-100' 
+              : 'bg-white border-slate-200 text-[#37322F] hover:border-indigo-500 hover:shadow-md'
           }`}
           disabled={isConnecting}
         >
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#37322F] to-[#605A57] flex items-center justify-center text-white text-xs font-bold">
-              C
-            </div>
-            <span className="text-sm font-medium">
-              {isConnecting ? 'Connecting...' : isConnected ? '✓ Connected to Consonant' : 'Connect with Consonant'}
-            </span>
+          <div className={`w-6 h-6 rounded-lg flex items-center justify-center transition-colors shadow-sm ${
+            isConnected ? 'bg-emerald-500' : 'bg-[#37322F] group-hover:bg-indigo-600'
+          }`}>
+            <span className="text-white text-[12px] font-bold">C</span>
           </div>
+          <span className="text-[13px] font-semibold tracking-tight">
+            {isConnecting ? 'Connecting...' : isConnected ? 'Consonant Connected' : 'Connect Consonant'}
+          </span>
         </button>
         
-        {isConnected && (
-          <div className="mt-3 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
-            <div className="text-xs text-emerald-700 font-medium">AI access enabled</div>
-            <div className="text-xs text-emerald-600 mt-1">All AI providers available</div>
-          </div>
-        )}
-        
-        {!isConnected && !isConnecting && (
-          <div className="mt-3 text-center text-xs text-slate-500">
-            One click to access all AI features
-          </div>
-        )}
+        <div className="relative">
+          {isConnected ? (
+            <div className="p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-emerald-100 shadow-sm animate-in fade-in slide-in-from-bottom-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="text-[11px] text-emerald-700 font-bold uppercase tracking-wider">AI Access Active</div>
+              </div>
+              <div className="text-[10px] text-slate-500 leading-tight">Billing & routing managed by Consonant.</div>
+            </div>
+          ) : isConnecting ? (
+            <div className="flex justify-center py-2">
+               <div className="flex gap-1.5">
+                  {[0, 1, 2].map(i => (
+                    <div key={i} className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: `${i * 150}ms` }} />
+                  ))}
+               </div>
+            </div>
+          ) : (
+            <div className="text-center text-[11px] text-slate-400 font-medium">
+              Unified billing for all your AI features
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
@@ -72,46 +89,52 @@ function BalanceMeter() {
 // SDK code preview component
 function SDKPreview() {
   return (
-    <div className="w-full h-full bg-[#1a1a2e] rounded-lg overflow-hidden flex flex-col">
-      {/* Tab bar */}
-      <div className="flex items-center gap-1 px-3 py-2 bg-[#16162a] border-b border-slate-700/50">
-        <div className="px-3 py-1 bg-[#1a1a2e] rounded text-xs text-white font-mono">TypeScript</div>
-        <div className="px-3 py-1 text-xs text-slate-500 font-mono hover:text-slate-300 cursor-pointer">Python</div>
+    <div className="w-full h-full bg-[#0f172a] rounded-xl overflow-hidden shadow-2xl flex flex-col border border-slate-800">
+      {/* Window controls */}
+      <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900/50 border-b border-slate-800/50">
+        <div className="flex items-center gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+        </div>
+        <div className="flex items-center gap-2">
+           <div className="px-2 py-0.5 bg-slate-800 rounded text-[9px] text-slate-400 font-mono">consonant.ts</div>
+           <div className="px-2 py-0.5 text-[9px] text-slate-600 font-mono">package.json</div>
+        </div>
       </div>
       
-      {/* Code */}
-      <div className="flex-1 p-4 overflow-hidden">
-        <pre className="text-[10px] sm:text-xs font-mono leading-relaxed">
-          <code>
-            <span className="text-slate-500">// Install:</span>
-            {"\n"}
-            <span className="text-emerald-400">npm install @consonant/sdk</span>
-            {"\n\n"}
-            <span className="text-slate-500">// Initialize with OAuth:</span>
-            {"\n"}
-            <span className="text-purple-400">import</span>
-            <span className="text-slate-300">{" { Consonant } "}</span>
-            <span className="text-purple-400">from</span>
-            <span className="text-amber-300">{" '@consonant/sdk'"}</span>
-            {"\n\n"}
-            <span className="text-purple-400">const</span>
-            <span className="text-slate-300">{" client = "}</span>
-            <span className="text-purple-400">new</span>
-            <span className="text-slate-300">{" Consonant("}</span>
-            {"\n"}
-            <span className="text-slate-300">{"  userToken: "}</span>
-            <span className="text-amber-300">req.user.consonantToken</span>
-            {"\n"}
-            <span className="text-slate-300">)</span>
-            {"\n\n"}
-            <span className="text-slate-500">// Make AI requests:</span>
-            {"\n"}
-            <span className="text-purple-400">const</span>
-            <span className="text-slate-300">{" response = "}</span>
-            <span className="text-purple-400">await</span>
-            <span className="text-slate-300">{" client.chat(...)"}</span>
-          </code>
-        </pre>
+      {/* Code Area */}
+      <div className="flex-1 p-5 font-mono text-[11px] sm:text-[12px] leading-[1.6]">
+        <div className="flex gap-4">
+          <div className="text-slate-600 text-right select-none hidden sm:block">
+            {Array.from({length: 8}).map((_, i) => <div key={i}>{i+1}</div>)}
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <div>
+              <span className="text-slate-500 italic">// Install SDK</span>
+            </div>
+            <div className="mb-3">
+              <span className="text-amber-400">npm</span> <span className="text-slate-300">install</span> <span className="text-emerald-400">@consonant/sdk</span>
+            </div>
+            
+            <div>
+              <span className="text-pink-400 italic">// Connect user account</span>
+            </div>
+            <div>
+              <span className="text-purple-400">import</span> <span className="text-slate-300">{" { "}</span><span className="text-cyan-400">Consonant</span><span className="text-slate-300">{" } "}</span><span className="text-purple-400">from</span><span className="text-amber-300"> 'sdk'</span>
+            </div>
+            <div className="mb-3">
+              <span className="text-purple-400">const</span> <span className="text-slate-300">ai =</span> <span className="text-purple-400">new</span> <span className="text-cyan-400">Consonant</span><span className="text-slate-300">(token)</span>
+            </div>
+            
+            <div>
+              <span className="text-indigo-400 italic">// Just work. Billing included.</span>
+            </div>
+            <div>
+              <span className="text-purple-400">const</span> <span className="text-slate-300">res =</span> <span className="text-purple-400">await</span> <span className="text-slate-300">ai.</span><span className="text-indigo-400">chat</span><span className="text-slate-300">(...)</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -119,58 +142,59 @@ function SDKPreview() {
 
 // Automatic billing visualization
 function KillSwitchDemo() {
-  const [stage, setStage] = useState(0)
-  const stages = ['idle', 'processing', 'billed', 'complete']
+  const [activeStep, setActiveStep] = useState(0)
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setStage(prev => (prev + 1) % stages.length)
-    }, 2500)
+      setActiveStep(prev => (prev + 1) % 4)
+    }, 2000)
     return () => clearInterval(interval)
   }, [])
   
+  const steps = [
+    { id: 1, text: 'AI Feature Triggered', color: 'blue' },
+    { id: 2, text: 'Usage Synced to Consonant', color: 'indigo' },
+    { id: 3, text: 'Immediate Micro-Billing', color: 'emerald' },
+    { id: 4, text: 'Revenue Share Deposited', color: 'amber' }
+  ]
+  
   return (
-    <div className="w-full h-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg p-4 sm:p-5 flex flex-col">
-      <div className="flex items-center justify-between mb-4">
-        <span className="text-[#49423D] text-xs font-semibold">Automatic Billing</span>
-        <div className={`px-2 py-0.5 rounded text-[10px] font-medium ${
-          stage === 1 ? 'bg-blue-100 text-blue-600' : 
-          stage === 2 ? 'bg-emerald-100 text-emerald-600' :
-          'bg-slate-100 text-slate-600'
-        }`}>
-          {stage === 0 && 'Ready'}
-          {stage === 1 && 'AI request'}
-          {stage === 2 && 'User billed'}
-          {stage === 3 && 'You paid'}
-        </div>
+    <div className="w-full h-full bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] rounded-xl p-6 flex flex-col border border-slate-200 shadow-inner">
+      <div className="flex items-center justify-between mb-5">
+        <span className="text-[#37322F] text-[12px] font-bold uppercase tracking-wider">Transaction Flow</span>
+        <div className="px-2 py-0.5 bg-emerald-50 border border-emerald-100 rounded-full text-[9px] font-bold text-emerald-600 uppercase">Real-Time</div>
       </div>
       
-      {/* Billing flow */}
-      <div className="flex-1 bg-white rounded-lg border border-slate-200 p-3 overflow-hidden">
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-              stage >= 1 ? 'bg-blue-500 text-white' : 'bg-slate-200 text-slate-400'
-            }`}>1</div>
-            <div className="text-xs text-slate-600">User makes AI request</div>
+      <div className="flex-1 flex flex-col justify-center gap-3">
+        {steps.map((step, i) => (
+          <div 
+            key={i}
+            className={`flex items-center gap-3 p-2.5 rounded-xl border transition-all duration-500 ${
+              i === activeStep 
+                ? 'bg-white border-slate-200 shadow-md translate-x-1 scale-[1.02]' 
+                : 'bg-transparent border-transparent opacity-40'
+            }`}
+          >
+            <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold shadow-sm transition-colors ${
+              i === activeStep 
+                ? `bg-indigo-600 text-white` 
+                : 'bg-slate-200 text-slate-500'
+            }`}>
+              {step.id}
+            </div>
+            <div className={`text-[12px] font-semibold tracking-tight ${
+              i === activeStep ? 'text-[#37322F]' : 'text-slate-400'
+            }`}>
+              {step.text}
+            </div>
+            {i === activeStep && (
+               <div className="ml-auto animate-pulse flex gap-0.5">
+                  <div className="w-1 h-1 rounded-full bg-emerald-400" />
+                  <div className="w-1 h-1 rounded-full bg-emerald-400" />
+               </div>
+            )}
           </div>
-          <div className="flex items-center gap-2">
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-              stage >= 2 ? 'bg-emerald-500 text-white' : 'bg-slate-200 text-slate-400'
-            }`}>2</div>
-            <div className="text-xs text-slate-600">Consonant bills user</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-              stage >= 3 ? 'bg-purple-500 text-white' : 'bg-slate-200 text-slate-400'
-            }`}>3</div>
-            <div className="text-xs text-slate-600">You receive revenue share</div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="mt-3 text-center text-[10px] text-slate-500">
-        Users see one bill across all AI apps
+        ))}
       </div>
     </div>
   )
@@ -179,21 +203,29 @@ function KillSwitchDemo() {
 // Analytics mini dashboard
 function AnalyticsDashboard() {
   return (
-    <div className="w-full h-full bg-white rounded-lg border border-slate-200 p-4 sm:p-5 flex flex-col">
-      <div className="flex items-center justify-between mb-4">
-        <span className="text-[#49423D] text-sm font-semibold">Platform Insights</span>
-        <span className="text-xs text-slate-500">Last 7 days</span>
+    <div className="w-full h-full bg-white rounded-xl border border-slate-200 p-6 flex flex-col shadow-sm">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <span className="text-[#37322F] text-[13px] font-bold">Platform Tokens</span>
+          <div className="text-[10px] text-slate-400 font-medium">Synced across all providers</div>
+        </div>
+        <div className="px-2 py-1 bg-slate-50 rounded-lg border border-slate-100 text-[10px] text-slate-500 font-bold">7D</div>
       </div>
       
       {/* Mini bar chart */}
-      <div className="flex-1 flex items-end justify-between gap-1 px-2">
+      <div className="flex-1 flex items-end justify-between gap-1.5 px-1 mb-6">
         {[65, 45, 80, 55, 90, 70, 85].map((height, i) => (
-          <div key={i} className="flex-1 flex flex-col items-center gap-1">
-            <div 
-              className="w-full bg-gradient-to-t from-[#37322F] to-[#605A57] rounded-t transition-all hover:from-[#49423D] hover:to-[#7A746F]"
-              style={{ height: `${height}%` }}
-            />
-            <span className="text-[8px] text-slate-400">
+          <div key={i} className="flex-1 flex flex-col items-center gap-2 group">
+            <div className="relative w-full">
+              <div 
+                className="w-full bg-[#f1f5f9] rounded-t-sm absolute bottom-0 h-[100px] -z-10"
+              />
+              <div 
+                className="w-full bg-gradient-to-t from-indigo-500 to-indigo-400 rounded-t-sm transition-all duration-1000 group-hover:from-indigo-400 group-hover:to-indigo-300 shadow-sm"
+                style={{ height: `${height}px` }}
+              />
+            </div>
+            <span className="text-[9px] text-slate-400 font-bold group-hover:text-slate-600 mb-[-4px]">
               {['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}
             </span>
           </div>
@@ -201,18 +233,18 @@ function AnalyticsDashboard() {
       </div>
       
       {/* Stats row */}
-      <div className="mt-4 pt-3 border-t border-slate-100 grid grid-cols-3 gap-2">
-        <div className="text-center">
-          <div className="text-lg font-semibold text-[#37322F]">1.2M</div>
-          <div className="text-[10px] text-slate-500">AI Tokens</div>
+      <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-50">
+        <div>
+          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-tight mb-0.5">Tokens</div>
+          <div className="text-[15px] font-bold text-[#37322F]">1.2M</div>
         </div>
-        <div className="text-center">
-          <div className="text-lg font-semibold text-emerald-600">$421</div>
-          <div className="text-[10px] text-slate-500">Revenue</div>
+        <div>
+          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-tight mb-0.5">Revenue</div>
+          <div className="text-[15px] font-bold text-emerald-600">$421</div>
         </div>
-        <div className="text-center">
-          <div className="text-lg font-semibold text-[#37322F]">2.4k</div>
-          <div className="text-[10px] text-slate-500">Active Users</div>
+        <div>
+          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-tight mb-0.5">Users</div>
+          <div className="text-[15px] font-bold text-[#37322F]">2.4k</div>
         </div>
       </div>
     </div>
@@ -222,7 +254,11 @@ function AnalyticsDashboard() {
 // Provider flexibility visual
 function StripeIntegration() {
   const [selectedProvider, setSelectedProvider] = useState(0)
-  const providers = ['OpenAI', 'Anthropic', 'Google']
+  const providers = [
+    { name: 'OpenAI', icon: 'O' },
+    { name: 'Anthropic', icon: 'A' },
+    { name: 'Google Gemini', icon: 'G' }
+  ]
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -232,48 +268,54 @@ function StripeIntegration() {
   }, [])
   
   return (
-    <div className="w-full h-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg p-4 sm:p-5 flex flex-col justify-between">
-      <div>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-[#49423D] text-sm font-semibold">Provider Flexibility</span>
+    <div className="w-full h-full bg-gradient-to-br from-[#f8fafc] to-[#f1f5f9] rounded-xl p-6 flex flex-col justify-between border border-slate-200 shadow-inner">
+      <div className="mb-4">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-2 h-2 rounded-full bg-indigo-500" />
+          <span className="text-[#37322F] text-[12px] font-bold uppercase tracking-wider">Provider Selection</span>
         </div>
-        <p className="text-xs text-slate-600 leading-relaxed mb-4">
-          Users choose their preferred AI provider. Your app works with all of them.
+        <p className="text-[11px] text-slate-500 leading-relaxed">
+          Users choose. You build once. Consonant routes.
         </p>
       </div>
       
-      {/* Provider selection */}
-      <div className="flex-1 bg-white rounded-lg border border-slate-200 p-3">
-        <div className="text-[10px] text-slate-500 mb-2">User's AI Provider</div>
-        <div className="space-y-2">
-          {providers.map((provider, i) => (
-            <div 
-              key={provider}
-              className={`flex items-center gap-2 p-2 rounded transition-all ${
-                i === selectedProvider 
-                  ? 'bg-emerald-50 border border-emerald-500' 
-                  : 'bg-slate-50 border border-transparent'
-              }`}
-            >
-              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                i === selectedProvider ? 'border-emerald-500' : 'border-slate-300'
-              }`}>
-                {i === selectedProvider && (
-                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                )}
-              </div>
-              <span className={`text-xs font-medium ${
-                i === selectedProvider ? 'text-emerald-700' : 'text-slate-600'
-              }`}>
-                {provider}
-              </span>
+      {/* Provider selection list */}
+      <div className="flex-1 space-y-2.5">
+        {providers.map((provider, i) => (
+          <div 
+            key={i}
+            className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-700 ${
+              i === selectedProvider 
+                ? 'bg-white border-indigo-200 shadow-md translate-x-1' 
+                : 'bg-slate-50/50 border-transparent opacity-60'
+            }`}
+          >
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-[11px] font-bold border ${
+              i === selectedProvider 
+                ? 'bg-indigo-50 border-indigo-100 text-indigo-600' 
+                : 'bg-white border-slate-200 text-slate-400'
+            }`}>
+              {provider.icon}
             </div>
-          ))}
-        </div>
-      </div>
-      
-      <div className="mt-3 text-center text-[10px] text-slate-500">
-        Your code stays the same—Consonant handles routing
+            <div className="flex flex-col">
+              <span className={`text-[12px] font-bold ${
+                i === selectedProvider ? 'text-[#37322F]' : 'text-slate-500'
+              }`}>
+                {provider.name}
+              </span>
+              {i === selectedProvider && (
+                <span className="text-[9px] text-emerald-600 font-bold uppercase animate-in fade-in zoom-in-95">Route Active</span>
+              )}
+            </div>
+            {i === selectedProvider && (
+              <div className="ml-auto w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center">
+                <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -421,32 +463,36 @@ export function BentoGridSection() {
                 Configure your revenue percentage on AI transactions. Get paid automatically when users consume AI through your app.
               </p>
             </div>
-            <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-lg overflow-hidden bg-white border border-slate-200 p-5 flex flex-col justify-center items-center">
-              <div className="w-full space-y-4">
+            <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-xl overflow-hidden bg-[#f8fafc] border border-slate-200 p-6 flex flex-col justify-center shadow-inner">
+              <div className="w-full space-y-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-[#37322F]">Revenue Share</span>
-                  <span className="text-xs font-bold text-emerald-600">30%</span>
+                  <div>
+                    <span className="text-[13px] font-bold text-[#37322F]">Dynamic Margins</span>
+                    <div className="text-[10px] text-slate-400 font-medium">Set your platform fee</div>
+                  </div>
+                  <div className="px-2.5 py-1 bg-emerald-50 rounded-lg border border-emerald-100 text-[11px] font-bold text-emerald-600">+30%</div>
                 </div>
                 
                 {/* Visual slider mock */}
-                <div className="relative w-full h-8 flex items-center">
-                  <div className="absolute w-full h-1.5 bg-slate-100 rounded-full" />
-                  <div className="absolute w-[30%] h-1.5 bg-emerald-500 rounded-full" />
-                  <div className="absolute left-[30%] w-5 h-5 bg-white border-2 border-emerald-500 rounded-full shadow-sm -ml-2.5 cursor-pointer hover:scale-110 transition-transform" />
+                <div className="relative w-full h-10 flex items-center">
+                  <div className="absolute w-full h-2 bg-slate-200/50 rounded-full" />
+                  <div className="absolute w-[30%] h-2 bg-indigo-500 rounded-full" />
+                  <div className="absolute left-[30%] w-6 h-6 bg-white border-[3px] border-indigo-500 rounded-xl shadow-lg -ml-3 cursor-pointer hover:scale-110 transition-transform active:scale-95 z-10" />
+                  <div className="absolute left-[30%] -top-6 -ml-4 bg-[#37322F] text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm">Your Fee</div>
                 </div>
 
                 <div className="pt-2 space-y-2">
-                  <div className="flex justify-between text-[10px]">
-                    <span className="text-slate-500">Cost (Provider)</span>
-                    <span className="text-slate-700">$1.00</span>
+                  <div className="flex justify-between text-[11px] font-medium font-mono">
+                    <span className="text-slate-400">PROVIDER COST</span>
+                    <span className="text-slate-600">$1.00</span>
                   </div>
-                  <div className="flex justify-between text-[10px]">
-                    <span className="text-slate-500">User Pays</span>
-                    <span className="text-slate-700">$1.30</span>
+                  <div className="flex justify-between text-[11px] font-medium font-mono">
+                    <span className="text-slate-400">USER PAYS</span>
+                    <span className="text-slate-600 font-bold">$1.30</span>
                   </div>
-                  <div className="flex justify-between text-[10px] font-bold border-t border-slate-50 pt-1">
-                    <span className="text-emerald-700">Your Share</span>
-                    <span className="text-emerald-700">$0.30</span>
+                  <div className="flex justify-between text-[12px] font-bold border-t border-slate-200/60 pt-2 text-emerald-600">
+                    <span>YOU EARN</span>
+                    <span className="bg-emerald-50 px-1.5 rounded">$0.30</span>
                   </div>
                 </div>
               </div>

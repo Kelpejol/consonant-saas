@@ -11,7 +11,7 @@ const faqData: FAQItem[] = [
   {
     question: "What is Consonant and who is it for?",
     answer:
-      "Consonant is a unified AI access layer for platform developers. Instead of building payment infrastructure, managing API keys, and integrating with multiple AI providers, you integrate Consonant once. Your users get one account that works across all AI-powered apps, and you set your revenue share and focus on building,",
+      "Consonant is a unified AI access layer for platform developers. Instead of building payment infrastructure, managing API keys, and integrating with multiple AI providers, you integrate Consonant once. Your users get one account that works across all AI-powered apps, and you set your revenue share and focus on building.",
   },
   {
     question: "How does it work for my users?",

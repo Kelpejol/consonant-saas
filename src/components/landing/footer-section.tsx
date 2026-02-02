@@ -18,7 +18,7 @@ export default function FooterSection() {
             />
           </div>
           <div className="text-white/70 text-sm font-medium leading-[18px] font-sans max-w-[240px]">
-            Real-time AI cost enforcement for developers building profitable AI products.
+            Unified AI access layer for platform developers. Connect once, set your revenue share, and ship faster.
           </div>
 
           {/* Social Media Icons */}
