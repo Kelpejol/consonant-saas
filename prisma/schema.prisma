@@ -113,7 +113,7 @@ model ApiKey {
   key            String       @unique
   maskedKey      String       @map("masked_key")
   // Engine verifies this SHA-256 hash
-  apiKeyHash     String       @unique @map("api_key_hash")
+  apiKeyHash     String?      @unique @map("api_key_hash")
   organizationId String       @map("organization_id")
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   
