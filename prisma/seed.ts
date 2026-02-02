@@ -43,7 +43,7 @@ async function main() {
     const demoKeyHash = crypto.createHash('sha256').update(demoKey).digest('hex')
 
     await prisma.apiKey.upsert({
-        where: { apiKeyHash: demoKeyHash },
+        where: { key: demoKey },
         update: { organizationId: org.id },
         create: {
             name: "Demo Key",
