@@ -4,81 +4,66 @@ import { Badge } from "@/components/ui/badge-custom"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
-// Animated balance meter component
+// OAuth-style authentication component
 function BalanceMeter() {
-  const [balance, setBalance] = useState(250000)
-  const [isStreaming, setIsStreaming] = useState(false)
+  const [isConnecting, setIsConnecting] = useState(false)
+  const [isConnected, setIsConnected] = useState(false)
   
   useEffect(() => {
-    // Simulate streaming deductions
-    const streamInterval = setInterval(() => {
-      setIsStreaming(true)
-      setBalance(prev => {
-        const newBalance = prev - Math.floor(Math.random() * 1500 + 500)
-        if (newBalance <= 50000) {
-          // Reset after reaching low
-          setTimeout(() => {
-            setBalance(250000)
-            setIsStreaming(false)
-          }, 2000)
-          return 50000
-        }
-        return newBalance
-      })
-    }, 800)
+    const connectInterval = setInterval(() => {
+      setIsConnecting(true)
+      setTimeout(() => {
+        setIsConnected(true)
+        setIsConnecting(false)
+        setTimeout(() => {
+          setIsConnected(false)
+        }, 3000)
+      }, 1500)
+    }, 6000)
     
-    return () => clearInterval(streamInterval)
+    return () => clearInterval(connectInterval)
   }, [])
   
-  const percentage = (balance / 250000) * 100
-  const isLow = percentage < 25
-  
   return (
-    <div className="w-full h-full bg-[#1a1a2e] rounded-lg p-4 sm:p-5 flex flex-col justify-between">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 rounded-full ${isStreaming ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`} />
-          <span className="text-slate-400 text-xs font-mono">customer_abc123</span>
-        </div>
-        <span className={`text-xs font-mono px-2 py-0.5 rounded ${isLow ? 'bg-amber-500/20 text-amber-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
-          {isLow ? 'LOW BALANCE' : 'ACTIVE'}
-        </span>
+    <div className="w-full h-full bg-gradient-to-br from-slate-50 to-white rounded-lg p-6 flex flex-col justify-center items-center border border-slate-200">
+      {/* App header */}
+      <div className="w-full mb-6 pb-4 border-b border-slate-200">
+        <div className="text-sm font-semibold text-[#37322F]">YourApp.ai</div>
+        <div className="text-xs text-slate-500 mt-1">AI-powered writing assistant</div>
       </div>
       
-      {/* Balance display */}
-      <div className="flex-1 flex flex-col justify-center">
-        <div className="text-slate-500 text-xs font-mono mb-1">Available Balance</div>
-        <div className="text-white text-2xl sm:text-3xl font-mono font-bold mb-3">
-          {balance.toLocaleString()} <span className="text-slate-500 text-sm">grains</span>
-        </div>
+      {/* OAuth button */}
+      <div className="w-full max-w-[280px]">
+        <button 
+          className={`w-full px-4 py-3 rounded-lg border-2 transition-all ${
+            isConnected 
+              ? 'bg-emerald-50 border-emerald-500 text-emerald-700' 
+              : 'bg-white border-slate-300 text-[#37322F] hover:border-[#37322F]'
+          }`}
+          disabled={isConnecting}
+        >
+          <div className="flex items-center justify-center gap-3">
+            <div className="w-5 h-5 rounded bg-gradient-to-br from-[#37322F] to-[#605A57] flex items-center justify-center text-white text-xs font-bold">
+              C
+            </div>
+            <span className="text-sm font-medium">
+              {isConnecting ? 'Connecting...' : isConnected ? '✓ Connected to Consonant' : 'Connect with Consonant'}
+            </span>
+          </div>
+        </button>
         
-        {/* Progress bar */}
-        <div className="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
-          <div 
-            className={`h-full transition-all duration-300 ${isLow ? 'bg-amber-500' : 'bg-emerald-500'}`}
-            style={{ width: `${percentage}%` }}
-          />
-        </div>
-        <div className="flex justify-between mt-1">
-          <span className="text-slate-500 text-[10px] font-mono">0</span>
-          <span className="text-slate-500 text-[10px] font-mono">250,000</span>
-        </div>
-      </div>
-      
-      {/* Recent activity */}
-      <div className="mt-4 pt-3 border-t border-slate-700/50">
-        <div className="text-slate-500 text-[10px] font-mono mb-2">Recent deductions</div>
-        <div className="space-y-1">
-          <div className="flex justify-between text-[10px] font-mono">
-            <span className="text-slate-400">gpt-4 completion</span>
-            <span className="text-red-400">-1,245</span>
+        {isConnected && (
+          <div className="mt-3 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
+            <div className="text-xs text-emerald-700 font-medium">AI access enabled</div>
+            <div className="text-xs text-emerald-600 mt-1">All AI providers available</div>
           </div>
-          <div className="flex justify-between text-[10px] font-mono">
-            <span className="text-slate-400">gpt-4 completion</span>
-            <span className="text-red-400">-892</span>
+        )}
+        
+        {!isConnected && !isConnecting && (
+          <div className="mt-3 text-center text-xs text-slate-500">
+            One click to access all AI features
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
@@ -102,7 +87,7 @@ function SDKPreview() {
             {"\n"}
             <span className="text-emerald-400">npm install @consonant/sdk</span>
             {"\n\n"}
-            <span className="text-slate-500">// Wrap your client</span>
+            <span className="text-slate-500">// Initialize with OAuth:</span>
             {"\n"}
             <span className="text-purple-400">import</span>
             <span className="text-slate-300">{" { Consonant } "}</span>
@@ -111,10 +96,20 @@ function SDKPreview() {
             {"\n\n"}
             <span className="text-purple-400">const</span>
             <span className="text-slate-300">{" client = "}</span>
-            <span className="text-cyan-400">consonant</span>
-            <span className="text-slate-300">.wrap(openai)</span>
+            <span className="text-purple-400">new</span>
+            <span className="text-slate-300">{" Consonant("}</span>
+            {"\n"}
+            <span className="text-slate-300">{"  userToken: "}</span>
+            <span className="text-amber-300">req.user.consonantToken</span>
+            {"\n"}
+            <span className="text-slate-300">)</span>
             {"\n\n"}
-            <span className="text-slate-500">// That's it. You're protected.</span>
+            <span className="text-slate-500">// Make AI requests:</span>
+            {"\n"}
+            <span className="text-purple-400">const</span>
+            <span className="text-slate-300">{" response = "}</span>
+            <span className="text-purple-400">await</span>
+            <span className="text-slate-300">{" client.chat(...)"}</span>
           </code>
         </pre>
       </div>
@@ -122,60 +117,60 @@ function SDKPreview() {
   )
 }
 
-// Kill switch visualization
+// Automatic billing visualization
 function KillSwitchDemo() {
   const [stage, setStage] = useState(0)
-  const stages = ['streaming', 'limit_hit', 'killed', 'recovered']
+  const stages = ['idle', 'processing', 'billed', 'complete']
   
   useEffect(() => {
     const interval = setInterval(() => {
       setStage(prev => (prev + 1) % stages.length)
-    }, 2000)
+    }, 2500)
     return () => clearInterval(interval)
   }, [])
   
   return (
     <div className="w-full h-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg p-4 sm:p-5 flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <span className="text-[#49423D] text-xs font-semibold">Kill Switch</span>
+        <span className="text-[#49423D] text-xs font-semibold">Automatic Billing</span>
         <div className={`px-2 py-0.5 rounded text-[10px] font-medium ${
-          stage === 2 ? 'bg-red-100 text-red-600' : 
-          stage === 3 ? 'bg-emerald-100 text-emerald-600' :
-          'bg-blue-100 text-blue-600'
+          stage === 1 ? 'bg-blue-100 text-blue-600' : 
+          stage === 2 ? 'bg-emerald-100 text-emerald-600' :
+          'bg-slate-100 text-slate-600'
         }`}>
-          {stage === 0 && 'Streaming...'}
-          {stage === 1 && 'Limit reached'}
-          {stage === 2 && 'Stream killed'}
-          {stage === 3 && 'User notified'}
+          {stage === 0 && 'Ready'}
+          {stage === 1 && 'AI request'}
+          {stage === 2 && 'User billed'}
+          {stage === 3 && 'You paid'}
         </div>
       </div>
       
-      {/* Simulated chat */}
+      {/* Billing flow */}
       <div className="flex-1 bg-white rounded-lg border border-slate-200 p-3 overflow-hidden">
-        <div className="space-y-2">
-          <div className="bg-slate-100 rounded-lg p-2 text-xs text-slate-600 max-w-[80%]">
-            Write a comprehensive guide...
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
+              stage >= 1 ? 'bg-blue-500 text-white' : 'bg-slate-200 text-slate-400'
+            }`}>1</div>
+            <div className="text-xs text-slate-600">User makes AI request</div>
           </div>
-          <div className={`bg-[#37322F] rounded-lg p-2 text-xs text-white max-w-[80%] ml-auto transition-all ${
-            stage >= 2 ? 'opacity-60' : ''
-          }`}>
-            {stage === 0 && "Here's a comprehensive guide to machine learning..."}
-            {stage >= 1 && (
-              <>
-                Here&apos;s a comprehensive guide to machine learning...
-                {stage >= 2 && (
-                  <div className="mt-2 pt-2 border-t border-white/20 text-amber-300 text-[10px]">
-                    ⚠️ Response limit reached
-                  </div>
-                )}
-              </>
-            )}
+          <div className="flex items-center gap-2">
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
+              stage >= 2 ? 'bg-emerald-500 text-white' : 'bg-slate-200 text-slate-400'
+            }`}>2</div>
+            <div className="text-xs text-slate-600">Consonant bills user</div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
+              stage >= 3 ? 'bg-purple-500 text-white' : 'bg-slate-200 text-slate-400'
+            }`}>3</div>
+            <div className="text-xs text-slate-600">You receive revenue share</div>
           </div>
         </div>
       </div>
       
       <div className="mt-3 text-center text-[10px] text-slate-500">
-        Partial response delivered, no overspend
+        Users see one bill across all AI apps
       </div>
     </div>
   )
@@ -186,7 +181,7 @@ function AnalyticsDashboard() {
   return (
     <div className="w-full h-full bg-white rounded-lg border border-slate-200 p-4 sm:p-5 flex flex-col">
       <div className="flex items-center justify-between mb-4">
-        <span className="text-[#49423D] text-sm font-semibold">Customer Analytics</span>
+        <span className="text-[#49423D] text-sm font-semibold">Platform Insights</span>
         <span className="text-xs text-slate-500">Last 7 days</span>
       </div>
       
@@ -208,74 +203,77 @@ function AnalyticsDashboard() {
       {/* Stats row */}
       <div className="mt-4 pt-3 border-t border-slate-100 grid grid-cols-3 gap-2">
         <div className="text-center">
-          <div className="text-lg font-semibold text-[#37322F]">847</div>
-          <div className="text-[10px] text-slate-500">Requests</div>
+          <div className="text-lg font-semibold text-[#37322F]">1.2M</div>
+          <div className="text-[10px] text-slate-500">AI Tokens</div>
         </div>
         <div className="text-center">
-          <div className="text-lg font-semibold text-emerald-600">$12.40</div>
-          <div className="text-[10px] text-slate-500">AI Spend</div>
+          <div className="text-lg font-semibold text-emerald-600">$421</div>
+          <div className="text-[10px] text-slate-500">Revenue</div>
         </div>
         <div className="text-center">
-          <div className="text-lg font-semibold text-[#37322F]">92%</div>
-          <div className="text-[10px] text-slate-500">Margin</div>
+          <div className="text-lg font-semibold text-[#37322F]">2.4k</div>
+          <div className="text-[10px] text-slate-500">Active Users</div>
         </div>
       </div>
     </div>
   )
 }
 
-// Stripe integration visual
+// Provider flexibility visual
 function StripeIntegration() {
-  const [syncing, setSyncing] = useState(false)
+  const [selectedProvider, setSelectedProvider] = useState(0)
+  const providers = ['OpenAI', 'Anthropic', 'Google']
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setSyncing(true)
-      setTimeout(() => setSyncing(false), 1500)
-    }, 4000)
+      setSelectedProvider(prev => (prev + 1) % providers.length)
+    }, 3000)
     return () => clearInterval(interval)
   }, [])
   
   return (
-    <div className="w-full h-full bg-gradient-to-br from-violet-50 to-indigo-50 rounded-lg p-4 sm:p-5 flex flex-col justify-between">
+    <div className="w-full h-full bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg p-4 sm:p-5 flex flex-col justify-between">
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <svg className="w-8 h-8" viewBox="0 0 40 40" fill="none">
-            <rect width="40" height="40" rx="8" fill="#635BFF"/>
-            <path d="M18.5 16.5c0-1.1.9-1.5 2.3-1.5 2.1 0 4.6.6 6.7 1.8v-6.3c-2.2-.9-4.5-1.3-6.7-1.3-5.5 0-9.1 2.9-9.1 7.7 0 7.5 10.3 6.3 10.3 9.5 0 1.3-1.1 1.7-2.7 1.7-2.3 0-5.3-.9-7.6-2.2v6.4c2.6 1.1 5.2 1.6 7.6 1.6 5.6 0 9.5-2.8 9.5-7.7-.1-8.1-10.3-6.6-10.3-9.7z" fill="white"/>
-          </svg>
-          <span className="text-[#49423D] text-sm font-semibold">Stripe Connected</span>
+          <span className="text-[#49423D] text-sm font-semibold">Provider Flexibility</span>
         </div>
-        <p className="text-xs text-slate-600 leading-relaxed">
-          Auto-sync customer payments. When invoices pay, grains credit instantly.
+        <p className="text-xs text-slate-600 leading-relaxed mb-4">
+          Users choose their preferred AI provider. Your app works with all of them.
         </p>
       </div>
       
-      {/* Sync animation */}
-      <div className="mt-4 flex items-center justify-center gap-3">
-        <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center">
-          <svg className="w-5 h-5 text-[#635BFF]" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-7.076-2.144l-.893 5.575C4.746 22.811 7.677 24 11.158 24c2.686 0 4.92-.7 6.466-1.958 1.652-1.317 2.605-3.285 2.605-5.714 0-4.039-2.494-5.757-6.253-7.178z"/>
-          </svg>
-        </div>
-        
-        <div className={`flex gap-1 ${syncing ? 'opacity-100' : 'opacity-30'}`}>
-          {[0, 1, 2].map(i => (
+      {/* Provider selection */}
+      <div className="flex-1 bg-white rounded-lg border border-slate-200 p-3">
+        <div className="text-[10px] text-slate-500 mb-2">User's AI Provider</div>
+        <div className="space-y-2">
+          {providers.map((provider, i) => (
             <div 
-              key={i} 
-              className={`w-1.5 h-1.5 rounded-full bg-[#635BFF] ${syncing ? 'animate-bounce' : ''}`}
-              style={{ animationDelay: `${i * 100}ms` }}
-            />
+              key={provider}
+              className={`flex items-center gap-2 p-2 rounded transition-all ${
+                i === selectedProvider 
+                  ? 'bg-emerald-50 border border-emerald-500' 
+                  : 'bg-slate-50 border border-transparent'
+              }`}
+            >
+              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                i === selectedProvider ? 'border-emerald-500' : 'border-slate-300'
+              }`}>
+                {i === selectedProvider && (
+                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                )}
+              </div>
+              <span className={`text-xs font-medium ${
+                i === selectedProvider ? 'text-emerald-700' : 'text-slate-600'
+              }`}>
+                {provider}
+              </span>
+            </div>
           ))}
-        </div>
-        
-        <div className="w-10 h-10 rounded-lg bg-[#37322F] flex items-center justify-center">
-          <span className="text-white text-xs font-bold">C</span>
         </div>
       </div>
       
-      <div className="mt-4 text-center text-[10px] text-slate-500">
-        {syncing ? 'Syncing payment data...' : 'Payment → Grains in real-time'}
+      <div className="mt-3 text-center text-[10px] text-slate-500">
+        Your code stays the same—Consonant handles routing
       </div>
     </div>
   )
@@ -357,7 +355,7 @@ export function BentoGridSection() {
                 Automatic Billing
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Users see one unified bill across all AI apps. You earn revenue share automatically—no payment infrastructure needed.
+                Users see one unified bill across all AI apps. You set your revenue share and focus on building—no payment infrastructure needed.
               </p>
             </div>
             <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-lg overflow-hidden">
@@ -423,35 +421,35 @@ export function BentoGridSection() {
                 Configure your revenue percentage on AI transactions. Get paid automatically when users consume AI through your app.
               </p>
             </div>
-            <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-lg overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 p-5 flex flex-col justify-center items-center">
-              <div className="grid grid-cols-3 gap-4">
-                {/* Provider icons */}
-                {[
-                  { name: 'OpenAI', src: '/openai-icon.svg' },
-                  { name: 'Anthropic', src: '/anthropic-Icon.svg' },
-                  { name: 'Google', src: '/google-gemini-icon.svg' },
-                  { name: 'Groq', src: '/grok-ai-icon.svg' },
-                  { name: 'Helicone', src: '/helicone.png' },
-                  { name: 'Portkey', src: '/portkey.jpeg' },
-                ].map((provider, i) => (
-                  <div 
-                    key={i}
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white shadow-sm border border-slate-200 flex items-center justify-center hover:scale-105 transition-transform cursor-pointer overflow-hidden p-2"
-                    title={provider.name}
-                  >
-                    <Image
-                      src={provider.src}
-                      alt={provider.name}
-                      width={28}
-                      height={28}
-                      className="object-contain w-full h-full"
-                    />
+            <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-lg overflow-hidden bg-white border border-slate-200 p-5 flex flex-col justify-center items-center">
+              <div className="w-full space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-[#37322F]">Revenue Share</span>
+                  <span className="text-xs font-bold text-emerald-600">30%</span>
+                </div>
+                
+                {/* Visual slider mock */}
+                <div className="relative w-full h-8 flex items-center">
+                  <div className="absolute w-full h-1.5 bg-slate-100 rounded-full" />
+                  <div className="absolute w-[30%] h-1.5 bg-emerald-500 rounded-full" />
+                  <div className="absolute left-[30%] w-5 h-5 bg-white border-2 border-emerald-500 rounded-full shadow-sm -ml-2.5 cursor-pointer hover:scale-110 transition-transform" />
+                </div>
+
+                <div className="pt-2 space-y-2">
+                  <div className="flex justify-between text-[10px]">
+                    <span className="text-slate-500">Cost (Provider)</span>
+                    <span className="text-slate-700">$1.00</span>
                   </div>
-                ))}
+                  <div className="flex justify-between text-[10px]">
+                    <span className="text-slate-500">User Pays</span>
+                    <span className="text-slate-700">$1.30</span>
+                  </div>
+                  <div className="flex justify-between text-[10px] font-bold border-t border-slate-50 pt-1">
+                    <span className="text-emerald-700">Your Share</span>
+                    <span className="text-emerald-700">$0.30</span>
+                  </div>
+                </div>
               </div>
-              <p className="mt-4 text-xs text-slate-500 text-center">
-                Plus Helicone, Portkey, LiteLLM, and direct API calls
-              </p>
             </div>
           </div>
         </div>

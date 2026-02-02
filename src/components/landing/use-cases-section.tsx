@@ -42,7 +42,7 @@ export default function UseCasesSection() {
         </svg>
       ),
       title: "Indie Developer Apps",
-      description: "Add AI features to your side project without building payment infrastructure. Users connect their Consonant account, you earn revenue share automatically.",
+      description: "Add AI features to your side project without building payment infrastructure. Users connect their Consonant account, you set your revenue share and focus on building.",
       example: "Chrome extension with 5K users",
       saving: "Zero payment infrastructure needed"
     },
