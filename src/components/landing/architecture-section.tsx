@@ -164,28 +164,6 @@ export default function ArchitectureSection() {
       <div className="self-stretch px-4 md:px-12 py-8 md:py-12">
         <ArchitectureFlow />
       </div>
-
-      {/* Stats row */}
-      <div className="self-stretch border-t border-[rgba(55,50,47,0.12)] flex justify-center">
-        <div className="flex flex-wrap justify-center items-stretch divide-x divide-[rgba(55,50,47,0.12)]">
-          <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">&lt;1 hour</div>
-            <div className="text-sm text-[#7A746F] mt-1">Integration time</div>
-          </div>
-          <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">1000+</div>
-            <div className="text-sm text-[#7A746F] mt-1">Platform integrations</div>
-          </div>
-          <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">5+</div>
-            <div className="text-sm text-[#7A746F] mt-1">AI providers supported</div>
-          </div>
-          <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">30%</div>
-            <div className="text-sm text-[#7A746F] mt-1">Revenue share</div>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

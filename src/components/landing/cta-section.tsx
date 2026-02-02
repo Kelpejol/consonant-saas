@@ -31,9 +31,9 @@ export default function CTASection() {
               AI access in 30 minutes
             </div>
             <div className="self-stretch text-center text-[#605A57] text-base md:text-lg leading-7 font-sans">
-              Join 1000+ platforms using Consonant to add AI features
+              Join 1000+ platforms using Consonant to add AI features.
               <br className="hidden md:block" />
-              without building infrastructure. Earn revenue share automatically.
+              Set your revenue share and focus on building.
             </div>
           </div>
 
@@ -87,7 +87,7 @@ export default function CTASection() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Earn revenue share</span>
+                <span>Set your revenue share</span>
               </div>
             </div>
           </div>

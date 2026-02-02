@@ -84,27 +84,6 @@ export function SocialProofSection() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-wrap justify-center items-stretch border-l border-r border-[rgba(55,50,47,0.12)] bg-gradient-to-b from-white/50 to-transparent">
-          <MetricCard 
-            value="1000" 
-            suffix="+" 
-            label="Apps integrated" 
-          />
-          <MetricCard 
-            value="50" 
-            suffix="K+" 
-            label="Unified accounts" 
-          />
-          <MetricCard 
-            value="0" 
-            label="API keys to manage" 
-          />
-          <MetricCard 
-            value="5" 
-            suffix="+" 
-            label="AI providers supported" 
-          />
-        </div>
 
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
           <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">

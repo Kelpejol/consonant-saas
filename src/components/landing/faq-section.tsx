@@ -26,7 +26,7 @@ const faqData: FAQItem[] = [
   {
     question: "How do I make money from AI features?",
     answer:
-      "When users consume AI through your app via Consonant-managed billing, you automatically earn revenue share. No payment infrastructure needed. For users who bring their own API keys, you can still charge for your app's features separately—Consonant just handles the secure key storage and routing.",
+      "Set your revenue share percentage in the Consonant dashboard. When users consume AI through your app via Consonant-managed billing, you automatically receive your configured percentage. No payment infrastructure needed. For users who bring their own API keys, you can still charge for your app's features separately—Consonant just handles the secure key storage and routing.",
   },
   {
     question: "Is it secure? Who sees the API keys?",

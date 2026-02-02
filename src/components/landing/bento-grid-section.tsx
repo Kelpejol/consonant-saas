@@ -320,14 +320,14 @@ export function BentoGridSection() {
         </div>
 
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
-          {/* User Authentication */}
+          {/* OAuth-Style Authentication */}
           <div className="border-b border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                User Authentication
+                OAuth-Style Authentication
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Users connect their Consonant account once. Your app gets instant AI access—no API keys to manage.
+                Users connect their Consonant account with one click—like "Sign in with Google." Instant AI access, zero API key management.
               </p>
             </div>
             <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-lg overflow-hidden">
@@ -342,7 +342,7 @@ export function BentoGridSection() {
                 Simple Integration
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Add Consonant SDK, implement auth flow, make AI requests. No payment processing, no API key storage.
+                Add our SDK, implement OAuth flow, make AI requests. No payment processing, no key storage, no provider complexity.
               </p>
             </div>
             <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-lg overflow-hidden">
@@ -417,10 +417,10 @@ export function BentoGridSection() {
           <div className="p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                Earn Revenue Share
+                Set Your Revenue Share
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Monetize AI features without building payment infrastructure. Earn automatically when users consume AI.
+                Configure your revenue percentage on AI transactions. Get paid automatically when users consume AI through your app.
               </p>
             </div>
             <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-lg overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 p-5 flex flex-col justify-center items-center">
