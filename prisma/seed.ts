@@ -68,20 +68,23 @@ async function main() {
     for (const cData of customers) {
         const customer = await prisma.customer.upsert({
             where: { id: cData.id },
-            update: {
-                currentBalanceGrains: BigInt(5000000),
-                lifetimeSpentGrains: BigInt(5000000),
-            },
+            update: {},
             create: {
                 ...cData,
                 organizationId: org.id,
-                currentBalanceGrains: BigInt(5000000),
-                lifetimeSpentGrains: BigInt(5000000),
             }
         })
 
+        // Update balances using raw SQL to avoid type errors
+        await prisma.$executeRaw`
+            UPDATE customers 
+            SET current_balance_grains = 5000000, 
+                lifetime_spent_grains = 5000000 
+            WHERE id = ${customer.id}
+        `
+
         // Sync to Redis
-        await redis.set(`customer:balance:${customer.id}`, customer.currentBalanceGrains.toString())
+        await redis.set(`customer:balance:${customer.id}`, "5000000")
         await redis.set(`customer:reserved:${customer.id}`, "0")
 
         // Add some random transaction history
