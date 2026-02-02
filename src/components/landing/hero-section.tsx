@@ -81,54 +81,58 @@ function AnimatedCodeLine({
 // Code showcase component
 function CodeShowcase({ activeCard }: { activeCard: number }) {
   const codeExamples = [
-    // Preflight check showcase
+    // Platform integration showcase
     {
       lines: [
-        { text: "// 1. Wrap your OpenAI client", delay: 0, highlight: false },
-        { text: "const client = consonant.wrap(openai, {", delay: 200, highlight: true },
-        { text: "  customerId: user.id", delay: 400, highlight: true },
-        { text: "});", delay: 600, highlight: true },
-        { text: "", delay: 800, highlight: false },
-        { text: "// 2. Make requests as usual", delay: 1000, highlight: false },
-        { text: "const response = await client.chat.completions.create({", delay: 1200, highlight: false },
-        { text: '  model: "gpt-4",', delay: 1400, highlight: false },
-        { text: "  messages: [...],", delay: 1600, highlight: false },
-        { text: "  stream: true", delay: 1800, highlight: false },
+        { text: "// 1. User connects their Consonant account", delay: 0, highlight: false },
+        { text: "const session = await consonant.auth({", delay: 200, highlight: true },
+        { text: "  appId: 'your-app-id',", delay: 400, highlight: true },
+        { text: "  redirectUri: '/callback'", delay: 600, highlight: true },
+        { text: "});", delay: 800, highlight: true },
+        { text: "", delay: 1000, highlight: false },
+        { text: "// 2. Make AI requests on their behalf", delay: 1200, highlight: false },
+        { text: "const response = await consonant.chat({", delay: 1400, highlight: false },
+        { text: "  userToken: session.token,", delay: 1600, highlight: false },
+        { text: '  model: "gpt-4",', delay: 1800, highlight: false },
+        { text: "  messages: [...]", delay: 2000, highlight: false },
+        { text: "});", delay: 2200, highlight: false },
+        { text: "", delay: 2400, highlight: false },
+        { text: "// ✓ User's account billed automatically", delay: 2600, highlight: true },
+      ]
+    },
+    // Unified billing showcase
+    {
+      lines: [
+        { text: "// Users see one unified bill", delay: 0, highlight: false },
+        { text: "// across all their AI apps", delay: 200, highlight: false },
+        { text: "", delay: 400, highlight: false },
+        { text: "// Your app in their dashboard:", delay: 600, highlight: true },
+        { text: '// "WriteFlow" - $12.40 this month', delay: 800, highlight: true },
+        { text: '// "CodeHelper" - $8.20 this month', delay: 1000, highlight: true },
+        { text: '// "DataViz" - $15.60 this month', delay: 1200, highlight: true },
+        { text: "", delay: 1400, highlight: false },
+        { text: "// Total: $36.20", delay: 1600, highlight: true },
+        { text: "// One payment, all apps", delay: 1800, highlight: true },
+        { text: "", delay: 2000, highlight: false },
+        { text: "// ✓ No scattered subscriptions", delay: 2200, highlight: true },
+      ]
+    },
+    // Provider flexibility showcase
+    {
+      lines: [
+        { text: "// Users choose their AI provider", delay: 0, highlight: false },
+        { text: "// Your app works with any of them", delay: 200, highlight: false },
+        { text: "", delay: 400, highlight: false },
+        { text: "// User switches in Consonant dashboard:", delay: 600, highlight: true },
+        { text: '// Provider: "OpenAI" → "Anthropic"', delay: 800, highlight: true },
+        { text: "", delay: 1000, highlight: false },
+        { text: "// Your code stays the same:", delay: 1200, highlight: false },
+        { text: "const response = await consonant.chat({", delay: 1400, highlight: false },
+        { text: "  userToken: session.token,", delay: 1600, highlight: false },
+        { text: "  messages: [...]", delay: 1800, highlight: false },
         { text: "});", delay: 2000, highlight: false },
         { text: "", delay: 2200, highlight: false },
-        { text: "// ✓ Balance checked in <5ms", delay: 2400, highlight: true },
-      ]
-    },
-    // Token tracking showcase
-    {
-      lines: [
-        { text: "// Real-time token accounting", delay: 0, highlight: false },
-        { text: "for await (const chunk of stream) {", delay: 200, highlight: false },
-        { text: "  // Consonant auto-tracks each token", delay: 400, highlight: true },
-        { text: "  await sendToUser(chunk);", delay: 600, highlight: false },
-        { text: "}", delay: 800, highlight: false },
-        { text: "", delay: 1000, highlight: false },
-        { text: "// Console output:", delay: 1200, highlight: false },
-        { text: "// [Consonant] +50 tokens, $0.003 deducted", delay: 1400, highlight: true },
-        { text: "// [Consonant] +50 tokens, $0.003 deducted", delay: 1600, highlight: true },
-        { text: "// [Consonant] Request complete: 892 tokens", delay: 1800, highlight: true },
-        { text: "// [Consonant] Final cost: $0.054", delay: 2000, highlight: true },
-      ]
-    },
-    // Kill switch showcase
-    {
-      lines: [
-        { text: "// Automatic kill switch", delay: 0, highlight: false },
-        { text: "try {", delay: 200, highlight: false },
-        { text: "  const response = await client.generate(params);", delay: 400, highlight: false },
-        { text: "} catch (error) {", delay: 600, highlight: false },
-        { text: "  if (error instanceof InsufficientBalanceError) {", delay: 800, highlight: true },
-        { text: "    // Stream auto-killed at exact limit", delay: 1000, highlight: true },
-        { text: '    showUpgradePrompt("AI limit reached");', delay: 1200, highlight: false },
-        { text: "  }", delay: 1400, highlight: false },
-        { text: "}", delay: 1600, highlight: false },
-        { text: "", delay: 1800, highlight: false },
-        { text: "// ✓ Never overspend, never lose money", delay: 2000, highlight: true },
+        { text: "// ✓ Automatically uses Anthropic now", delay: 2400, highlight: true },
       ]
     },
   ]
@@ -219,16 +223,16 @@ export function HeroSection() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full border border-[#E0DEDB] shadow-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-xs font-medium text-[#49423D]">
-              Real-time AI cost enforcement
+              The unified AI access layer
             </span>
           </div>
           
           {/* Main headline */}
           <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[72px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.1] lg:leading-[1.05] font-serif px-2 sm:px-4 md:px-0">
-            Stop losing money on
+            One AI account that
             <br />
             <span className="relative">
-              AI overages
+              works everywhere
               <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 5.5C47 2.5 153 2.5 199 5.5" stroke="#37322F" strokeWidth="2" strokeLinecap="round" opacity="0.3"/>
               </svg>
@@ -237,12 +241,12 @@ export function HeroSection() {
           
           {/* Subheadline */}
           <div className="w-full max-w-[540px] lg:w-[540px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.75)] sm:text-lg md:text-xl leading-[1.5] sm:leading-[1.55] md:leading-[1.6] font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm">
-            Consonant enforces per-customer AI spending limits in real-time.
+            Stop managing scattered API keys and fragmented AI subscriptions.
             {" "}
             <span className="text-[#37322F] font-semibold">
-              Kill runaway requests mid-stream
+              Consonant gives users one account
             </span>
-            {" "}before they drain your margins.
+            {" "}that works across all your AI-powered apps.
           </div>
         </div>
       </div>
@@ -313,22 +317,22 @@ export function HeroSection() {
 
         <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
           <FeatureCard
-            title="Pre-flight balance checks"
-            description="Verify customer budgets in <5ms before every AI request. Reject instantly if they can't afford it."
+            title="Seamless authentication"
+            description="Users connect their Consonant account once. Your app gets instant AI access with zero API key management."
             isActive={activeCard === 0}
             progress={activeCard === 0 ? progress : 0}
             onClick={() => handleCardClick(0)}
           />
           <FeatureCard
-            title="Real-time token metering"
-            description="Track every token as it streams. Update balances atomically with Redis-backed microsecond operations."
+            title="Unified billing for users"
+            description="One bill across all AI apps. Users see total spending in one dashboard, not scattered across subscriptions."
             isActive={activeCard === 1}
             progress={activeCard === 1 ? progress : 0}
             onClick={() => handleCardClick(1)}
           />
           <FeatureCard
-            title="Mid-stream kill switch"
-            description="Automatically terminate responses when limits hit. Your customer sees partial output, you lose nothing."
+            title="Provider flexibility"
+            description="Users switch between OpenAI, Anthropic, or any provider. Your code stays the same—Consonant handles routing."
             isActive={activeCard === 2}
             progress={activeCard === 2 ? progress : 0}
             onClick={() => handleCardClick(2)}

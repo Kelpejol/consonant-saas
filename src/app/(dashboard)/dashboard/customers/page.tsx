@@ -74,7 +74,7 @@ export default async function CustomersPage() {
                         )}
                       </TableCell>
                       <TableCell className="font-mono text-sm">
-                        {formatGrains(c.balanceGrains)}
+                        {formatGrains(c.currentBalanceGrains)}
                       </TableCell>
                       <TableCell>
                          <span className={isVampire ? "text-red-600 font-bold" : "text-green-600 font-medium"}>

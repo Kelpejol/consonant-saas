@@ -16,8 +16,8 @@ function ArchitectureFlow() {
             </svg>
           </div>
           <div className="text-center">
-            <div className="text-[#37322F] font-semibold text-sm">SDK Wrapper</div>
-            <div className="text-[#7A746F] text-xs mt-1">Intercepts AI requests</div>
+            <div className="text-[#37322F] font-semibold text-sm">Your App</div>
+            <div className="text-[#7A746F] text-xs mt-1">User makes request</div>
           </div>
         </div>
 
@@ -38,8 +38,8 @@ function ArchitectureFlow() {
             </svg>
           </div>
           <div className="text-center">
-            <div className="text-[#37322F] font-semibold text-sm">Balance API</div>
-            <div className="text-[#7A746F] text-xs mt-1">&lt;5ms gRPC checks</div>
+            <div className="text-[#37322F] font-semibold text-sm">Consonant</div>
+            <div className="text-[#7A746F] text-xs mt-1">Auth & routing</div>
           </div>
         </div>
 
@@ -60,8 +60,8 @@ function ArchitectureFlow() {
             </svg>
           </div>
           <div className="text-center">
-            <div className="text-[#37322F] font-semibold text-sm">Redis + Lua</div>
-            <div className="text-[#7A746F] text-xs mt-1">Atomic operations</div>
+            <div className="text-[#37322F] font-semibold text-sm">AI Provider</div>
+            <div className="text-[#7A746F] text-xs mt-1">OpenAI, Anthropic, etc.</div>
           </div>
         </div>
 
@@ -82,8 +82,8 @@ function ArchitectureFlow() {
             </svg>
           </div>
           <div className="text-center">
-            <div className="text-[#37322F] font-semibold text-sm">Approve / Reject</div>
-            <div className="text-[#7A746F] text-xs mt-1">Real-time decision</div>
+            <div className="text-[#37322F] font-semibold text-sm">User Billed</div>
+            <div className="text-[#7A746F] text-xs mt-1">Automatic & unified</div>
           </div>
         </div>
       </div>
@@ -102,27 +102,29 @@ function ArchitectureFlow() {
           <div className="p-5 overflow-x-auto">
             <pre className="text-xs sm:text-sm font-mono leading-relaxed">
               <code>
-                <span className="text-slate-500">// 1. User makes AI request</span>
+                <span className="text-slate-500">// 1. User authenticates with Consonant</span>
+                {"\n"}
+                <span className="text-purple-400">const</span>
+                <span className="text-slate-300">{" session = "}</span>
+                <span className="text-purple-400">await</span>
+                <span className="text-cyan-400">{" consonant"}</span>
+                <span className="text-slate-300">.auth(...);</span>
+                {"\n\n"}
+                <span className="text-slate-500">// 2. Your app makes AI request</span>
                 {"\n"}
                 <span className="text-purple-400">const</span>
                 <span className="text-slate-300">{" response = "}</span>
                 <span className="text-purple-400">await</span>
-                <span className="text-cyan-400">{" client"}</span>
-                <span className="text-slate-300">.chat.completions.create(...);</span>
+                <span className="text-cyan-400">{" consonant"}</span>
+                <span className="text-slate-300">.chat(...);</span>
                 {"\n\n"}
-                <span className="text-slate-500">// 2. SDK intercepts → checks balance → approves</span>
+                <span className="text-slate-500">// 3. Consonant routes to user's provider</span>
                 {"\n"}
-                <span className="text-emerald-400">{"// ✓ Balance: 500,000 grains"}</span>
+                <span className="text-emerald-400">{"// ✓ User chose Anthropic in dashboard"}</span>
                 {"\n"}
-                <span className="text-emerald-400">{"// ✓ Estimated: 45,000 grains"}</span>
+                <span className="text-emerald-400">{"// ✓ Request routed automatically"}</span>
                 {"\n"}
-                <span className="text-emerald-400">{"// ✓ Request approved in 3.2ms"}</span>
-                {"\n\n"}
-                <span className="text-slate-500">// 3. Tokens stream, balance updates atomically</span>
-                {"\n"}
-                <span className="text-amber-400">{"// → Deducting tokens as they stream..."}</span>
-                {"\n"}
-                <span className="text-emerald-400">{"// ✓ Final cost: 42,150 grains"}</span>
+                <span className="text-emerald-400">{"// ✓ User billed, you earn revenue share"}</span>
               </code>
             </pre>
           </div>
@@ -148,12 +150,12 @@ export default function ArchitectureSection() {
             text="Architecture"
           />
           <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            Built for millisecond decisions
+            The layer between apps and AI
           </div>
           <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            Every AI request passes through our high-performance stack.
+            Consonant sits between your application and AI providers.
             <br className="hidden md:block" />
-            Go backend, Redis atomic ops, gRPC transport—all optimized for speed.
+            Handle auth, route requests, manage billing—all through one clean API.
           </div>
         </div>
       </div>
@@ -167,20 +169,20 @@ export default function ArchitectureSection() {
       <div className="self-stretch border-t border-[rgba(55,50,47,0.12)] flex justify-center">
         <div className="flex flex-wrap justify-center items-stretch divide-x divide-[rgba(55,50,47,0.12)]">
           <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">&lt;5ms</div>
-            <div className="text-sm text-[#7A746F] mt-1">Balance check latency</div>
+            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">&lt;1 hour</div>
+            <div className="text-sm text-[#7A746F] mt-1">Integration time</div>
           </div>
           <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">100K+</div>
-            <div className="text-sm text-[#7A746F] mt-1">Requests per second</div>
+            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">1000+</div>
+            <div className="text-sm text-[#7A746F] mt-1">Platform integrations</div>
           </div>
           <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">99.99%</div>
-            <div className="text-sm text-[#7A746F] mt-1">Uptime SLA</div>
+            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">5+</div>
+            <div className="text-sm text-[#7A746F] mt-1">AI providers supported</div>
           </div>
           <div className="px-8 py-6 text-center">
-            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">0</div>
-            <div className="text-sm text-[#7A746F] mt-1">Race conditions</div>
+            <div className="text-2xl md:text-3xl font-semibold text-[#37322F]">30%</div>
+            <div className="text-sm text-[#7A746F] mt-1">Revenue share</div>
           </div>
         </div>
       </div>

@@ -41,10 +41,10 @@ export default function UseCasesSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
         </svg>
       ),
-      title: "AI Chatbots & Assistants",
-      description: "Per-user rate limiting for chat applications. Prevent power users from consuming your entire AI budget in a single session.",
-      example: "Customer support bot with 1000 daily users",
-      saving: "Saves ~$2,400/mo in overages"
+      title: "Indie Developer Apps",
+      description: "Add AI features to your side project without building payment infrastructure. Users connect their Consonant account, you earn revenue share automatically.",
+      example: "Chrome extension with 5K users",
+      saving: "Zero payment infrastructure needed"
     },
     {
       icon: (
@@ -52,10 +52,10 @@ export default function UseCasesSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
       ),
-      title: "AI Code Editors",
-      description: "Enforce token budgets for AI-powered IDEs. Stop runaway autocomplete from draining customer allocations.",
-      example: "Dev tool serving 500 enterprise seats",
-      saving: "Prevents $8K+ monthly surprises"
+      title: "SaaS Platforms",
+      description: "Integrate AI features into your existing SaaS product. Let users bring their own AI provider or use Consonant-managed billing—you choose.",
+      example: "Project management tool with AI summaries",
+      saving: "One integration, all providers"
     },
     {
       icon: (
@@ -63,10 +63,10 @@ export default function UseCasesSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
       ),
-      title: "Multi-Agent Systems",
-      description: "Control AI costs across agent swarms. Set collective budgets for cooperating agents working on complex tasks.",
-      example: "Research platform with 10+ concurrent agents",
-      saving: "90% reduction in runaway costs"
+      title: "Enterprise Tools",
+      description: "Give enterprise customers unified AI access with granular controls. They manage budgets centrally while using AI across all your tools.",
+      example: "Enterprise analytics platform",
+      saving: "Centralized billing & controls"
     },
     {
       icon: (
@@ -74,10 +74,10 @@ export default function UseCasesSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
       ),
-      title: "Document Processing",
-      description: "Budget-aware document analysis for legal, medical, or financial docs. Know costs before processing begins.",
-      example: "Legal AI processing 10K docs/month",
-      saving: "Predictable $X per document"
+      title: "Content Platforms",
+      description: "Build writing tools, image generators, or content studios. Users get one AI account that works across all their creative apps.",
+      example: "AI writing assistant with 10K users",
+      saving: "Users love unified billing"
     },
     {
       icon: (
@@ -85,10 +85,10 @@ export default function UseCasesSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
-      title: "Email & Content Generation",
-      description: "Fixed budgets for AI-generated content. Perfect for marketing tools, email platforms, and content studios.",
-      example: "Marketing SaaS with tiered plans",
-      saving: "Enforces plan limits exactly"
+      title: "Developer Tools",
+      description: "IDE plugins, code assistants, and dev tools. Developers bring their own API keys securely through Consonant—you never see them.",
+      example: "VS Code extension for code review",
+      saving: "Zero security liability"
     },
     {
       icon: (
@@ -96,10 +96,10 @@ export default function UseCasesSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       ),
-      title: "API-First AI Products",
-      description: "Meter AI usage for your API customers. Bill accurately based on actual consumption, not estimates.",
-      example: "AI API with usage-based pricing",
-      saving: "100% accurate metering"
+      title: "AI-First Startups",
+      description: "Launch your AI product faster. Focus on your unique features while Consonant handles authentication, billing, and multi-provider support.",
+      example: "New AI research assistant",
+      saving: "Ship in days, not months"
     },
   ]
 
@@ -118,12 +118,12 @@ export default function UseCasesSection() {
             text="Use Cases"
           />
           <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            Built for every AI app
+            Built for platform developers
           </div>
           <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            From chatbots to multi-agent systems, Consonant protects your margins
+            From indie apps to enterprise platforms, Consonant makes it easy to
             <br className="hidden md:block" />
-            wherever you use AI APIs.
+            add AI features that users love—without building infrastructure.
           </div>
         </div>
       </div>

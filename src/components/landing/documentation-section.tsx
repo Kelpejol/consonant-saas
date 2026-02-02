@@ -158,12 +158,12 @@ export default function DocumentationSection() {
             text="Documentation"
           />
           <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            Built for developers
+            Ship faster with great docs
           </div>
           <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            Comprehensive guides, interactive references, and idiomatic SDKs.
+            Integration guides, API references, and SDKs for every platform.
             <br className="hidden md:block" />
-            Everything you need to ship confident AI products.
+            Get your users unified AI access in under 30 minutes.
           </div>
         </div>
       </div>

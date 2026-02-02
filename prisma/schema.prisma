@@ -3,16 +3,15 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
 }
 
-// User model for authentication
+// User model for authentication and SaaS management
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
-  emailVerified DateTime?
+  emailVerified DateTime? @map("email_verified")
   password      String?
   image         String?
   accounts      Account[]
@@ -21,16 +20,18 @@ model User {
   organizations      OrganizationMember[]
   ownedOrganizations Organization[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
 }
 
 model Account {
   id                String  @id @default(cuid())
-  userId            String
+  userId            String  @map("user_id")
   type              String
   provider          String
-  providerAccountId String
+  providerAccountId String  @map("provider_account_id")
   refresh_token     String?
   access_token      String?
   expires_at        Int?
@@ -42,14 +43,17 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }
 
 model VerificationToken {
@@ -58,87 +62,176 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verification_tokens")
 }
 
+// Organization is the primary reference unit for Consonant Engine
 model Organization {
   id          String   @id @default(cuid())
   name        String
   slug        String   @unique
-  ownerId     String
+  ownerId     String   @map("owner_id")
   owner       User     @relation(fields: [ownerId], references: [id])
   
   members     OrganizationMember[]
   apiKeys     ApiKey[]
   customers   Customer[]
   
-  stripeCustomerId String?
+  stripeCustomerId String? @map("stripe_customer_id")
   plan             String  @default("free")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  // Fields used by Consonant Engine for real-time enforcement
+  defaultBufferStrategy String @default("conservative") @map("default_buffer_strategy")
+  grainsPerDollar       BigInt @default(1000000) @map("grains_per_dollar")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("organizations")
 }
 
 model OrganizationMember {
   id             String       @id @default(cuid())
-  userId         String
-  organizationId String
+  userId         String       @map("user_id")
+  organizationId String       @map("organization_id")
   role           String       @default("member")
   
   user           User         @relation(fields: [userId], references: [id])
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@unique([userId, organizationId])
+  @@map("organization_members")
 }
 
+// API Keys are created by SaaS and used by Engine for gRPC auth
 model ApiKey {
   id             String       @id @default(cuid())
   name           String
   key            String       @unique
-  maskedKey      String
-  organizationId String
+  maskedKey      String       @map("masked_key")
+  // Engine verifies this SHA-256 hash
+  apiKeyHash     String       @unique @map("api_key_hash")
+  organizationId String       @map("organization_id")
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   
-  lastUsedAt     DateTime?
-  expiresAt      DateTime?
-  createdAt      DateTime     @default(now())
+  lastUsedAt     DateTime?    @map("last_used_at")
+  expiresAt      DateTime?    @map("expires_at")
+  createdAt      DateTime     @default(now()) @map("created_at")
+
+  @@map("api_keys")
 }
 
+// Customers are managed by SaaS but their balances are enforced by the Engine
 model Customer {
   id             String       @id @default(cuid())
-  externalId     String
+  externalId     String       @map("external_id")
   name           String?
   email          String?
-  organizationId String
+  organizationId String       @map("organization_id")
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   
-  balanceGrains  BigInt       @default(0)
-  totalSpent     BigInt       @default(0)
+  // Authoritative balance from Engine (synced to Redis)
+  currentBalanceGrains  BigInt       @default(0) @map("current_balance_grains")
+  lifetimeSpentGrains   BigInt       @default(0) @map("lifetime_spent_grains")
+
+  // Stripe sync and strategy fields
+  stripeCustomerId String? @map("stripe_customer_id")
+  bufferStrategy   String  @default("conservative") @map("buffer_strategy")
+  metadata         Json?   // Arbitrary metadata
   
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
 
   @@unique([organizationId, externalId])
   @@index([organizationId])
   
   transactions   Transaction[]
+  requests       Request[]
+
+  @@map("customers")
 }
 
-// History of usage/payments/adjustments
+// Append-only ledger managed by Engine
 model Transaction {
-  id             String       @id @default(cuid())
-  customerId     String
+  id             String       @id @default(cuid()) @map("transaction_id")
+  customerId     String       @map("customer_id")
   customer       Customer     @relation(fields: [customerId], references: [id], onDelete: Cascade)
   
-  amountGrains   BigInt       // Negative for usage, positive for top-ups
-  type           String       // "USAGE", "TOPUP", "ADJUSTMENT"
-  providerModel  String?      // e.g. "gpt-4o", "claude-3-5-sonnet"
+  amountGrains   BigInt       @map("amount_grains") // Negative for usage, positive for top-ups
+  type           String       @map("transaction_type") // e.g. "ai_usage", "refund"
+  providerModel  String?      @map("provider_model")
   
+  referenceId    String?      @map("reference_id") // SDK request_id or Stripe ID
+  description    String?
+  metadata       Json?
+
   status         String       @default("COMPLETED")
-  createdAt      DateTime     @default(now())
+  createdAt      DateTime     @default(now()) @map("created_at")
 
   @@index([customerId])
   @@index([createdAt])
+  @@map("transactions")
+}
+
+// TimescaleDB Hypertable for AI Requests (Managed by Engine)
+model Request {
+  id                String   @id @map("request_id")
+  customerId        String   @map("customer_id")
+  customer          Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  
+  organizationId    String   @map("organization_id")
+  
+  model             String   @db.VarChar(100)
+  provider          String   @db.VarChar(50) @default("openai")
+
+  estimatedCostGrains         BigInt  @map("estimated_cost_grains")
+  reservedGrains              BigInt  @map("reserved_grains")
+  streamingDeductedGrains     BigInt  @default(0) @map("streaming_deducted_grains")
+  providerReportedCostGrains  BigInt? @map("provider_reported_cost_grains")
+  actualCostGrains            BigInt? @map("actual_cost_grains")
+  reconciliationDifference    BigInt? @map("reconciliation_difference_grains")
+
+  promptTokens      Int?     @map("prompt_tokens")
+  completionTokens  Int?     @map("completion_tokens")
+  totalTokens       Int?     @map("total_tokens")
+
+  status            String   @db.VarChar(50)
+  killReason        String?  @db.VarChar(100) @map("kill_reason")
+  latencyMs         Int?     @map("latency_ms")
+
+  metadata          Json?    @map("request_metadata")
+  gatewayRequestId  String?  @db.VarChar(255) @map("gateway_request_id")
+
+  hasIntegrityIssue Boolean @default(false) @map("has_integrity_issue")
+  integrityIssueDesc String? @db.Text @map("integrity_issue_description")
+
+  createdAt         DateTime @default(now()) @map("created_at")
+  completedAt       DateTime? @map("completed_at")
+  reconciledAt      DateTime? @map("reconciled_at")
+
+  @@index([customerId, createdAt(sort: Desc)])
+  @@index([organizationId, createdAt(sort: Desc)])
+  @@index([status])
+  @@index([reconciledAt])
+  @@map("requests")
+}
+
+// AI Model Pricing (Managed by Engine)
+model ModelPricing {
+  modelName                  String   @db.VarChar(100) @map("model_name")
+  provider                   String   @db.VarChar(50)
+  effectiveFrom              DateTime @map("effective_from")
+  
+  inputCostPerMillionTokens  BigInt @map("input_cost_per_million_tokens")
+  outputCostPerMillionTokens BigInt @map("output_cost_per_million_tokens")
+  
+  effectiveUntil             DateTime? @map("effective_until")
+  createdAt                  DateTime  @default(now()) @map("created_at")
+
+  @@id([modelName, provider, effectiveFrom])
+  @@index([modelName, provider])
+  @@map("model_pricing")
 }

@@ -1,10 +1,14 @@
-
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
+import Redis from 'ioredis'
+import crypto from 'crypto'
 
 const prisma = new PrismaClient()
+const redis = new Redis("rediss://:CRm3ENJWCxoSfJco9GtDKPbThIHSgHX8@redis-16934.c92.us-east-1-3.ec2.cloud.redislabs.com:16934")
 
 async function main() {
+    console.log('Starting seed...')
+
     // 1. Create a demo user
     const hashedPassword = await bcrypt.hash('password123', 10)
     const user = await prisma.user.upsert({
@@ -34,60 +38,66 @@ async function main() {
         },
     })
 
-    // 3. Create Customers
+    // 3. Create a Demo API Key
+    const demoKey = "con_demo_key_123456789"
+    const demoKeyHash = crypto.createHash('sha256').update(demoKey).digest('hex')
+
+    await prisma.apiKey.upsert({
+        where: { apiKeyHash: demoKeyHash },
+        update: { organizationId: org.id },
+        create: {
+            name: "Demo Key",
+            key: demoKey,
+            maskedKey: "con_demo...",
+            apiKeyHash: demoKeyHash,
+            organizationId: org.id,
+        }
+    })
+    await redis.set(`apikey:${demoKeyHash}`, org.id)
+
+    // 4. Create Customers
     const customers = [
-        { externalId: 'cust_001', name: 'Acme Corp', email: 'billing@acme.com' },
-        { externalId: 'cust_002', name: 'Stark Industries', email: 'pepper@stark.com' },
-        { externalId: 'cust_003', name: 'Wayne Ent', email: 'bruce@wayne.com' },
-        { externalId: 'cust_004', name: 'Vampire AI', email: 'dracula@vampire.ai' }, // High usage, low balance
+        { id: '123e4567-e89b-12d3-a456-426614174000', externalId: 'cust_001', name: 'Acme Corp', email: 'billing@acme.com' },
+        { id: '223e4567-e89b-12d3-a456-426614174000', externalId: 'cust_002', name: 'Stark Industries', email: 'pepper@stark.com' },
+        { id: '323e4567-e89b-12d3-a456-426614174000', externalId: 'cust_003', name: 'Wayne Ent', email: 'bruce@wayne.com' },
+        { id: '423e4567-e89b-12d3-a456-426614174000', externalId: 'cust_004', name: 'Vampire AI', email: 'dracula@vampire.ai' },
     ]
 
     for (const cData of customers) {
         const customer = await prisma.customer.upsert({
-            where: {
-                organizationId_externalId: {
-                    organizationId: org.id,
-                    externalId: cData.externalId
-                }
+            where: { id: cData.id },
+            update: {
+                currentBalanceGrains: BigInt(5000000),
+                lifetimeSpentGrains: BigInt(5000000),
             },
-            update: {},
             create: {
                 ...cData,
                 organizationId: org.id,
-                balanceGrains: BigInt(5000000), // 5M grains
-                totalSpent: BigInt(5000000),
+                currentBalanceGrains: BigInt(5000000),
+                lifetimeSpentGrains: BigInt(5000000),
             }
         })
 
+        // Sync to Redis
+        await redis.set(`customer:balance:${customer.id}`, customer.currentBalanceGrains.toString())
+        await redis.set(`customer:reserved:${customer.id}`, "0")
+
         // Add some random transaction history
-        for (let i = 0; i < 10; i++) {
-            const date = new Date()
-            date.setDate(date.getDate() - i)
-
-            const usage = cData.externalId === 'cust_004' ? 1000000 : 200000 // Vampire uses 5x more
-
+        for (let i = 0; i < 5; i++) {
+            const usage = cData.externalId === 'cust_004' ? 500000 : 100000
             await prisma.transaction.create({
                 data: {
                     customerId: customer.id,
                     amountGrains: BigInt(-usage),
-                    type: 'USAGE',
+                    type: 'ai_usage',
                     providerModel: 'gpt-4o',
-                    createdAt: date
+                    status: 'completed'
                 }
             })
         }
-
-        // Update balance
-        const currentUsage = cData.externalId === 'cust_004' ? BigInt(-10000000) : BigInt(-2000000)
-        await prisma.customer.update({
-            where: { id: customer.id },
-            data: {
-                balanceGrains: { increment: currentUsage }
-            }
-        })
     }
 
-    console.log('Seed completed.')
+    console.log('Seed completed successfully.')
 }
 
 main()
@@ -97,4 +107,5 @@ main()
     })
     .finally(async () => {
         await prisma.$disconnect()
+        await redis.quit()
     })

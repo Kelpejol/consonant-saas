@@ -297,12 +297,12 @@ export function BentoGridSection() {
             text="How it works"
           />
           <div className="w-full max-w-[598.06px] lg:w-[598.06px] text-center flex justify-center flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            Everything you need to protect margins
+            The infrastructure layer for AI access
           </div>
           <div className="self-stretch text-center text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
-            Real-time balance tracking, automatic kill switches, and
+            One integration gives your users unified AI access across providers,
             <br className="hidden sm:block" />
-            Stripe integration—all in a lightweight SDK.
+            secure authentication, and automatic billing—with zero infrastructure work.
           </div>
         </div>
       </div>
@@ -320,14 +320,14 @@ export function BentoGridSection() {
         </div>
 
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
-          {/* Real-time Balance Tracking */}
+          {/* User Authentication */}
           <div className="border-b border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                Real-time Balance Tracking
+                User Authentication
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Watch balances update live as tokens stream. Every grain is accounted for with microsecond precision.
+                Users connect their Consonant account once. Your app gets instant AI access—no API keys to manage.
               </p>
             </div>
             <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-lg overflow-hidden">
@@ -335,14 +335,14 @@ export function BentoGridSection() {
             </div>
           </div>
 
-          {/* 3-Line Integration */}
+          {/* Simple Integration */}
           <div className="border-b border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] font-semibold leading-tight font-sans text-lg sm:text-xl">
-                3-Line Integration
+                Simple Integration
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Wrap your existing OpenAI or Anthropic client. No infrastructure changes, no complex setup.
+                Add Consonant SDK, implement auth flow, make AI requests. No payment processing, no API key storage.
               </p>
             </div>
             <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-lg overflow-hidden">
@@ -350,14 +350,14 @@ export function BentoGridSection() {
             </div>
           </div>
 
-          {/* Kill Switch */}
+          {/* Automatic Billing */}
           <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                Automatic Kill Switch
+                Automatic Billing
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Terminate responses mid-stream when limits hit. Customer sees partial output, you lose zero dollars.
+                Users see one unified bill across all AI apps. You earn revenue share automatically—no payment infrastructure needed.
               </p>
             </div>
             <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-lg overflow-hidden">
@@ -365,14 +365,14 @@ export function BentoGridSection() {
             </div>
           </div>
 
-          {/* Stripe Integration */}
+          {/* Provider Flexibility */}
           <div className="p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                Stripe Integration
+                Provider Flexibility
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Connect Stripe in one click. Customer payments automatically convert to AI spending limits.
+                Users choose their preferred AI provider. Your app works with all of them—Consonant handles routing.
               </p>
             </div>
             <div className="w-full h-[220px] sm:h-[260px] md:h-[280px] rounded-lg overflow-hidden">
@@ -398,14 +398,14 @@ export function BentoGridSection() {
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch" />
         
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 border-l border-r border-[rgba(55,50,47,0.12)]">
-          {/* Analytics */}
+          {/* Analytics Dashboard */}
           <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                Per-Customer Analytics
+                Analytics Dashboard
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                See exactly which customers are profitable and which are draining your AI budget.
+                See how users engage with AI features. Track usage patterns, costs, and optimize your product.
               </p>
             </div>
             <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-lg overflow-hidden">
@@ -413,14 +413,14 @@ export function BentoGridSection() {
             </div>
           </div>
           
-          {/* Multi-provider */}
+          {/* Revenue Share */}
           <div className="p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                Works With Any Provider
+                Earn Revenue Share
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                OpenAI, Anthropic, Google, Groq—use any provider or gateway. Consonant sits in front.
+                Monetize AI features without building payment infrastructure. Earn automatically when users consume AI.
               </p>
             </div>
             <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-lg overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 p-5 flex flex-col justify-center items-center">

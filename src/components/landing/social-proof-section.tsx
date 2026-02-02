@@ -86,24 +86,23 @@ export function SocialProofSection() {
 
         <div className="flex-1 flex flex-wrap justify-center items-stretch border-l border-r border-[rgba(55,50,47,0.12)] bg-gradient-to-b from-white/50 to-transparent">
           <MetricCard 
-            prefix="<" 
-            value="5" 
-            suffix="ms" 
-            label="Balance check latency" 
+            value="1000" 
+            suffix="+" 
+            label="Apps integrated" 
           />
           <MetricCard 
-            value="100" 
-            suffix="%" 
-            label="Overage prevention" 
+            value="50" 
+            suffix="K+" 
+            label="Unified accounts" 
           />
           <MetricCard 
-            value="3" 
-            label="Lines of code to integrate" 
-          />
-          <MetricCard 
-            prefix="$" 
             value="0" 
-            label="Lost to runaway requests" 
+            label="API keys to manage" 
+          />
+          <MetricCard 
+            value="5" 
+            suffix="+" 
+            label="AI providers supported" 
           />
         </div>
 

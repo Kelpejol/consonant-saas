@@ -5,8 +5,8 @@ export type CustomerWithStats = {
     name: string | null;
     email: string | null;
     externalId: string;
-    balanceGrains: bigint;
-    totalSpent: bigint;
+    currentBalanceGrains: bigint;
+    lifetimeSpentGrains: bigint;
     usageCount: number;
     lastUsage: Date | null;
     margin: number; // Placeholder for margin logic
@@ -17,10 +17,10 @@ export async function getOrganizationCustomers(organizationId: string) {
         where: { organizationId },
         include: {
             _count: {
-                select: { transactions: { where: { type: "USAGE" } } }
+                select: { transactions: { where: { type: "ai_usage" } } }
             },
             transactions: {
-                where: { type: "USAGE" },
+                where: { type: "ai_usage" },
                 orderBy: { createdAt: "desc" },
                 take: 1,
             }
@@ -34,8 +34,7 @@ export async function getOrganizationCustomers(organizationId: string) {
         lastUsage: c.transactions[0]?.createdAt || null,
         // Basic margin calculation: (Total Revenue - Total Cost) / Total Revenue 
         // In our context: (Purchased Grains - Used Grains) / Purchased Grains
-        // But for now, we'll store a mock margin based on totalSent vs balance
-        margin: c.totalSpent > 0 ? Number(c.balanceGrains) / Number(c.totalSpent) : 100
+        margin: c.lifetimeSpentGrains > 0 ? Number(c.currentBalanceGrains) / Number(c.lifetimeSpentGrains) : 100
     }));
 }
 
@@ -45,7 +44,7 @@ export async function getDashboardStats(organizationId: string) {
         prisma.transaction.aggregate({
             where: {
                 customer: { organizationId },
-                type: "USAGE"
+                type: "ai_usage"
             },
             _sum: { amountGrains: true },
             _count: true
@@ -84,7 +83,7 @@ export async function getUsageTimeline(organizationId: string, days: number = 7)
     const transactions = await prisma.transaction.findMany({
         where: {
             customer: { organizationId },
-            type: "USAGE",
+            type: "ai_usage",
             createdAt: { gte: dateLimit }
         },
         orderBy: { createdAt: "asc" }

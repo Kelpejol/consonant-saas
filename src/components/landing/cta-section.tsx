@@ -26,14 +26,14 @@ export default function CTASection() {
 
           <div className="self-stretch flex flex-col justify-start items-start gap-4">
             <div className="self-stretch text-center flex justify-center flex-col text-[#37322F] text-3xl md:text-5xl font-semibold leading-tight md:leading-[1.1] font-sans tracking-tight">
-              Start protecting your
+              Give your users unified
               <br />
-              AI margins today
+              AI access in 30 minutes
             </div>
             <div className="self-stretch text-center text-[#605A57] text-base md:text-lg leading-7 font-sans">
-              Join hundreds of developers who trust Consonant
+              Join 1000+ platforms using Consonant to add AI features
               <br className="hidden md:block" />
-              to enforce spending limits and maximize profitability.
+              without building infrastructure. Earn revenue share automatically.
             </div>
           </div>
 
@@ -81,13 +81,13 @@ export default function CTASection() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>5-minute setup</span>
+                <span>30-minute integration</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Cancel anytime</span>
+                <span>Earn revenue share</span>
               </div>
             </div>
           </div>

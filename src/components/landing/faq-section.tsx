@@ -11,32 +11,32 @@ const faqData: FAQItem[] = [
   {
     question: "What is Consonant and who is it for?",
     answer:
-      "Consonant is a real-time AI cost enforcement system for developers building AI-powered applications. It's designed for SaaS founders, AI app builders, and teams who need precise spending control and token tracking across OpenAI, Anthropic, and other AI providers.",
+      "Consonant is a unified AI access layer for platform developers. Instead of building payment infrastructure, managing API keys, and integrating with multiple AI providers, you integrate Consonant once. Your users get one account that works across all AI-powered apps, and you earn revenue share automatically.",
   },
   {
-    question: "How does real-time balance checking work?",
+    question: "How does it work for my users?",
     answer:
-      "Our SDK intercepts AI API calls before they reach the provider. It sends a preflight request to our backend API which verifies customer spending limits in Redis (sub-millisecond latency). If the limit is exceeded, the request is rejected and the end user is notified immediately.",
+      "Users create a Consonant account once and choose how to pay (managed billing or bring-your-own API key). When they use your app, they connect their Consonant account—similar to 'Sign in with Google.' All AI usage flows through Consonant, giving them one unified bill across all their AI apps.",
   },
   {
-    question: "Can I use Consonant with Helicone, Portkey, or direct API calls?",
+    question: "What do I need to integrate?",
     answer:
-      "Yes! Consonant works with any AI provider setup. Use it with Helicone, Portkey, LiteLLM, or direct API calls to OpenAI, Anthropic, Google, Groq, and others. The SDK wraps your existing client transparently.",
+      "Integration takes about 30 minutes. Install our SDK, implement the authentication flow (users connect their Consonant account), and make AI requests through our API. We handle everything else: billing, API key management, provider routing, and security. No payment processing, no key storage, no multi-provider complexity.",
   },
   {
-    question: "What pricing models does Consonant support?",
+    question: "How do I make money from AI features?",
     answer:
-      "Consonant supports flexible pricing allocation. Allocate a percentage of customer subscription revenue to AI costs, set fixed monthly budgets, or use custom pricing rules. You control how grains (our micro-billing unit) map to customer budgets.",
+      "When users consume AI through your app via Consonant-managed billing, you automatically earn revenue share. No payment infrastructure needed. For users who bring their own API keys, you can still charge for your app's features separately—Consonant just handles the secure key storage and routing.",
   },
   {
-    question: "Is my customer data secure?",
+    question: "Is it secure? Who sees the API keys?",
     answer:
-      "Yes. All data is encrypted in transit and at rest. We use PostgreSQL with Row Level Security, Redis for real-time caching, and infrastructure hosted on trusted cloud providers. We maintain SOC 2 compliance and security audits.",
+      "Your application never sees or stores user API keys. Users paste their keys into Consonant's secure vault (encrypted at rest). When they use your app, Consonant uses their key behind the scenes. This is fundamentally more secure than having keys scattered across dozens of applications. We maintain SOC 2 compliance and regular security audits.",
   },
   {
-    question: "How do I get started with Consonant?",
+    question: "Can users switch AI providers?",
     answer:
-      "Sign up at app.consonant.dev, create an account, integrate our TypeScript or Python SDK (2 lines of code to wrap your AI client), and deploy. Our documentation includes examples for OpenAI, Anthropic, and more. You can be live in under 30 minutes.",
+      "Yes! Users can switch between OpenAI, Anthropic, Google, Groq, or any supported provider in their Consonant dashboard. Your code stays the same—Consonant automatically routes requests to their chosen provider. This gives users choice and keeps providers competing on quality and price.",
   },
 ]
 
@@ -71,9 +71,9 @@ export default function FAQSection() {
             Frequently Asked Questions
           </div>
           <div className="w-full text-[#605A57] text-base font-normal leading-7 font-sans">
-            Everything you need to know about controlling
+            Everything you need to know about integrating
             <br className="hidden md:block" />
-            your AI costs with Consonant.
+            unified AI access into your platform.
           </div>
         </div>
 
