@@ -38,24 +38,24 @@ export default function UseCasesSection() {
     {
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
         </svg>
       ),
-      title: "Indie Developer Apps",
-      description: "Add AI features to your side project without building payment infrastructure. Users connect their Consonant account, you set your revenue share and focus on building.",
-      example: "Chrome extension with 5K users",
-      saving: "Zero payment infrastructure needed"
+      title: "Bring-Your-Own-Key (BYOK) Apps",
+      description: "Build tools where power users bring their own API keys. You get the security of a vault without the liability of storing keys on your servers.",
+      example: "Developer-focused IDE plugins or analytical tools",
+      saving: "Zero security liability for user keys"
     },
     {
       icon: (
         <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: "SaaS Platforms",
-      description: "Integrate AI features into your existing SaaS product. Let users bring their own AI provider or use Consonant-managed billing—you choose.",
-      example: "Project management tool with AI summaries",
-      saving: "One integration, all providers"
+      title: "AI-as-a-Service Platforms",
+      description: "Launch apps with built-in AI credits. Users pay you a margin on top of every request, and you don't have to manage the underlying provider billing.",
+      example: "Writing assistants or design tools with token-based pricing",
+      saving: "Automated billing with built-in margins"
     },
     {
       icon: (
@@ -63,43 +63,10 @@ export default function UseCasesSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
       ),
-      title: "Enterprise Tools",
-      description: "Give enterprise customers unified AI access with granular controls. They manage budgets centrally while using AI across all your tools.",
-      example: "Enterprise analytics platform",
-      saving: "Centralized billing & controls"
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      ),
-      title: "Content Platforms",
-      description: "Build writing tools, image generators, or content studios. Users get one AI account that works across all their creative apps.",
-      example: "AI writing assistant with 10K users",
-      saving: "Users love unified billing"
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: "Developer Tools",
-      description: "IDE plugins, code assistants, and dev tools. Developers bring their own API keys securely through Consonant—you never see them.",
-      example: "VS Code extension for code review",
-      saving: "Zero security liability"
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
-      title: "AI-First Startups",
-      description: "Launch your AI product faster. Focus on your unique features while Consonant handles authentication, billing, and multi-provider support.",
-      example: "New AI research assistant",
-      saving: "Ship in days, not months"
+      title: "Enterprise Managed Access",
+      description: "Provide tools where companies can centrally manage their AI spend and provider preferences across all their employees using your software.",
+      example: "Enterprise collaboration tools or data science platforms",
+      saving: "Centralized spend & provider management"
     },
   ]
 
@@ -121,19 +88,21 @@ export default function UseCasesSection() {
             Built for platform developers
           </div>
           <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            From indie apps to enterprise platforms, Consonant makes it easy to
+            Consonant simplifies the complex logic of AI orchestration,
             <br className="hidden md:block" />
-            add AI features that users love—without building infrastructure.
+            letting you focus on high-value features and behavior.
           </div>
         </div>
       </div>
 
       {/* Use Cases Grid */}
       <div className="self-stretch px-6 md:px-12 lg:px-24 pb-12 md:pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {useCases.map((useCase, index) => (
-            <UseCaseCard key={index} {...useCase} />
-          ))}
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px]">
+            {useCases.map((useCase, index) => (
+              <UseCaseCard key={index} {...useCase} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

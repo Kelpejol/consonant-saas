@@ -337,12 +337,12 @@ export function BentoGridSection() {
             text="How it works"
           />
           <div className="w-full max-w-[598.06px] lg:w-[598.06px] text-center flex justify-center flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            The infrastructure layer for AI access
+           The Infrastructure Layer for AI Features
           </div>
           <div className="self-stretch text-center text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
-            One integration gives your users unified AI access across providers,
+            Consonant sits between your app and the model providers,
             <br className="hidden sm:block" />
-            secure authentication, and automatic billing—with zero infrastructure work.
+            handling the logic that usually takes months to build.
           </div>
         </div>
       </div>
@@ -457,20 +457,20 @@ export function BentoGridSection() {
           <div className="p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4 sm:gap-5">
             <div className="flex flex-col gap-2">
               <h3 className="text-[#37322F] text-lg sm:text-xl font-semibold leading-tight font-sans">
-                Set Your Revenue Share
+                Implement Custom Revenue Models
               </h3>
               <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                Configure your revenue percentage on AI transactions. Get paid automatically when users consume AI through your app.
+                Design pricing that fits your business—from per-request margins to subscription-inclusive AI. Move from infrastructure to monetization in minutes.
               </p>
             </div>
             <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] rounded-xl overflow-hidden bg-[#f8fafc] border border-slate-200 p-6 flex flex-col justify-center shadow-inner">
               <div className="w-full space-y-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-[13px] font-bold text-[#37322F]">Dynamic Margins</span>
-                    <div className="text-[10px] text-slate-400 font-medium">Set your platform fee</div>
+                    <span className="text-[13px] font-bold text-[#37322F]">Custom Monetization</span>
+                    <div className="text-[10px] text-slate-400 font-medium">Define your margin and logic</div>
                   </div>
-                  <div className="px-2.5 py-1 bg-emerald-50 rounded-lg border border-emerald-100 text-[11px] font-bold text-emerald-600">+30%</div>
+                  <div className="px-2.5 py-1 bg-emerald-50 rounded-lg border border-emerald-100 text-[11px] font-bold text-emerald-600">Model Active</div>
                 </div>
                 
                 {/* Visual slider mock */}

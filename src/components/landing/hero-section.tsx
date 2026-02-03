@@ -229,10 +229,10 @@ export function HeroSection() {
           
           {/* Main headline */}
           <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[72px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.1] lg:leading-[1.05] font-serif px-2 sm:px-4 md:px-0">
-            One AI account for
+           The auth & billing layer 
             <br />
             <span className="relative">
-              all your apps
+             for AI apps.
               <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 5.5C47 2.5 153 2.5 199 5.5" stroke="#37322F" strokeWidth="2" strokeLinecap="round" opacity="0.3"/>
               </svg>
@@ -241,10 +241,10 @@ export function HeroSection() {
           
           {/* Subheadline */}
           <div className="w-full max-w-[540px] lg:w-[540px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.75)] sm:text-lg md:text-xl leading-[1.5] sm:leading-[1.55] md:leading-[1.6] font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm">
-            Users connect their Consonant account once. Works across every AI app they use.
-            {" "}
+           Stop building custom billing and key management for every AI feature. Let your users bring their own providers or pay as they go. 
             <span className="text-[#37322F] font-semibold">
-              You integrate once, set your revenue share, and focus on building.
+             Set your platform fee, and start monetizing immediately.
+            {" "}
             </span>
           </div>
         </div>
@@ -316,22 +316,22 @@ export function HeroSection() {
 
         <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
           <FeatureCard
-            title="Seamless authentication"
-            description="Users connect their Consonant account once. Your app gets instant AI access with zero API key management."
+            title="Zero Key Management"
+            description="Your app gets instant AI access without ever touching a user's sensitive API keys. We handle the vaulting, encryption, and rotation."
             isActive={activeCard === 0}
             progress={activeCard === 0 ? progress : 0}
             onClick={() => handleCardClick(0)}
           />
           <FeatureCard
-            title="Unified billing for users"
-            description="One bill across all AI apps. Users see total spending in one dashboard, not scattered across subscriptions."
+            title="Programmable Revenue Models"
+            description="Implement custom revenue models in minutes. Set your platform margins and handle usage-based billing across any provider without building complex payment infrastructure."
             isActive={activeCard === 1}
             progress={activeCard === 1 ? progress : 0}
             onClick={() => handleCardClick(1)}
           />
           <FeatureCard
-            title="Provider flexibility"
-            description="Users switch between OpenAI, Anthropic, or any provider. Your code stays the same—Consonant handles routing."
+            title="Universal Provider Routing"
+            description="Write code once. Let users toggle between OpenAI, Anthropic, or local models via Ollama. No code changes required on your end."
             isActive={activeCard === 2}
             progress={activeCard === 2 ? progress : 0}
             onClick={() => handleCardClick(2)}
