@@ -223,7 +223,7 @@ export function HeroSection() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/80 backdrop-blur-sm rounded-full border border-[#E0DEDB] shadow-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="text-xs font-medium text-[#49423D]">
-              The unified AI access layer
+              The unified AI access layer.
             </span>
           </div>
           
