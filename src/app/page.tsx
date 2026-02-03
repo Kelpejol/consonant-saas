@@ -10,6 +10,9 @@ import { SocialProofSection } from "../components/landing/social-proof-section"
 import { BentoGridSection } from "../components/landing/bento-grid-section"
 import ArchitectureSection from "../components/landing/architecture-section"
 import UseCasesSection from "../components/landing/use-cases-section"
+import UserExperienceSection from "../components/landing/user-experience-section"
+import DeveloperBenefitsSection from "../components/landing/developer-benefits-section"
+import AdvancedCapabilitiesSection from "../components/landing/advanced-capabilities-section"
 import OpenSourceSection from "../components/landing/open-source-section"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -43,6 +46,15 @@ export default function LandingPage() {
   
               {/* Use Cases Section */}
               <UseCasesSection />
+
+              {/* User Experience Section - Two-path journey */}
+              <UserExperienceSection />
+
+              {/* Developer Benefits Section */}
+              <DeveloperBenefitsSection />
+
+              {/* Advanced Capabilities Section */}
+              <AdvancedCapabilitiesSection />
   
               {/* Documentation Section */}
               <DocumentationSection />
