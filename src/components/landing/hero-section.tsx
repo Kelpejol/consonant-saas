@@ -229,10 +229,10 @@ export function HeroSection() {
           
           {/* Main headline */}
           <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[72px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.1] lg:leading-[1.05] font-serif px-2 sm:px-4 md:px-0">
-           The auth & billing layer 
+           The Infrastructure to manage your access
             <br />
             <span className="relative">
-             for AI apps.
+             into the AI world.
               <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 5.5C47 2.5 153 2.5 199 5.5" stroke="#37322F" strokeWidth="2" strokeLinecap="round" opacity="0.3"/>
               </svg>
@@ -241,9 +241,9 @@ export function HeroSection() {
           
           {/* Subheadline */}
           <div className="w-full max-w-[540px] lg:w-[540px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.75)] sm:text-lg md:text-xl leading-[1.5] sm:leading-[1.55] md:leading-[1.6] font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm">
-           Stop building custom billing and key management for every AI feature. Let your users bring their own providers or pay as they go. 
+           Get access to your favourite AI models, use this access accross any platform's AI features from a single interface on a pay as you go. 
             <span className="text-[#37322F] font-semibold">
-             Set your platform fee, and start monetizing immediately.
+            For platforms, Let your users bring their own providers, and with a single API remove your burden of AI inference costs and vulnerability of BYOK.
             {" "}
             </span>
           </div>
