@@ -124,8 +124,7 @@ function ArchitectureFlow() {
                 {"\n"}
                 <span className="text-emerald-400">{"// ✓ Request routed automatically"}</span>
                 {"\n"}
-                <span className="text-emerald-400">{"// ✓ User billed, you set your revenue share"}</span>
-              </code>
+              
             </pre>
           </div>
         </div>
