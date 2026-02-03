@@ -45,9 +45,9 @@ const instrumentSerif = Instrument_Serif({
 })
 
 export const metadata: Metadata = {
-  title: "Consonant - Real-time AI Cost Enforcement",
+  title: "Consonant - The unified AI access layer",
   description:
-    "Stop losing money on AI overages. Track costs per customer, enforce budgets in real-time, and protect your margins with a single line of code.",
+    "One AI account for all your apps.",
 }
 
 export default function RootLayout({
