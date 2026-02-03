@@ -124,7 +124,8 @@ function ArchitectureFlow() {
                 {"\n"}
                 <span className="text-emerald-400">{"// ✓ Request routed automatically"}</span>
                 {"\n"}
-              
+                
+              </code>
             </pre>
           </div>
         </div>

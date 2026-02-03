@@ -188,7 +188,7 @@ export default function AdvancedCapabilitiesSection() {
         </svg>
       ),
       title: "Local & Self-Hosted Models",
-      description: "Users run Ollama locally or use private infrastructure",
+      description: "Let advanced users or enterprise bring their own self-hosted or local LLMs through a unified interface",
       details: [
         "User configures local model endpoint",
         "Requests routed to their local machine",

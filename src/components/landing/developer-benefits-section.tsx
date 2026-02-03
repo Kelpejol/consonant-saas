@@ -57,14 +57,10 @@ export default function DeveloperBenefitsSection() {
             }
             text="For developers"
           />
-          <div className="w-full text-center flex justify-center flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
+          <div className="w-full text-center flex justify-center flex-col text-[#49423D] text-lg sm:text-xl md:text-2xl lg:text-4xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
             Why developers choose Consonant
           </div>
-          <div className="self-stretch text-center text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
-            Instead of building AI infrastructure from scratch, integrate once.
-            <br className="hidden sm:block" />
-            Get everything you need to add AI features—with zero backend work.
-          </div>
+         
         </div>
       </div>
 
@@ -82,10 +78,10 @@ export default function DeveloperBenefitsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               }
-              title="Eliminate payment barrier"
-              description="Users with Consonant connect in 3 seconds. No payment form. No credit card entry. No friction."
-              metric="85%"
-              metricLabel="Conversion rate vs 40-50%"
+              title="Maximize Conversion"
+              description="Eliminate the payment barrier. Users bring their existing AI billing from other apps, letting them try your platform instantly without a credit card."
+              metric="90%+"
+              metricLabel="Signup-to-activation rate"
             />
             
             <BenefitCard
@@ -130,10 +126,10 @@ export default function DeveloperBenefitsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
               }
-              title="Built-in features"
-              description="Failover, analytics, spending limits, audit logs. Everything included, no extra work."
-              metric="Weeks"
-              metricLabel="Dev time saved"
+              title="Support Non-Technical Users"
+              description="Built-in managed billing means users without API keys can still use your app. Consonant handles the complexity, you just ship the features."
+              metric="0"
+              metricLabel="Logic for non-tech users"
             />
             
             <BenefitCard
@@ -142,10 +138,10 @@ export default function DeveloperBenefitsSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               }
-              title="Impossible options"
-              description="Local models, enterprise infrastructure, user provider choice. Features that would take months."
-              metric="Months"
-              metricLabel="Dev time saved"
+              title="Infrastructure Control"
+              description="Let advanced users or enterprise customers bring their own self-hosted or local LLMs through a unified interface."
+              metric="Unlimited"
+              metricLabel="Infrastructure options"
             />
             
           </div>
@@ -155,65 +151,7 @@ export default function DeveloperBenefitsSection() {
       </div>
       
       {/* Comparison section */}
-      <div className="self-stretch border-t border-[rgba(55,50,47,0.12)] flex justify-center items-stretch">
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch" />
-        
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 border-l border-r border-[rgba(55,50,47,0.12)]">
-          {/* Build yourself */}
-          <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10">
-            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-4">Build it yourself</div>
-            <div className="space-y-3">
-              {[
-                "Payment integration (2-4 weeks)",
-                "API key storage & encryption (1-2 weeks)",
-                "Multi-provider support (2-3 weeks each)",
-                "Rate limiting & load balancing (1 week)",
-                "Analytics dashboard (2-3 weeks)",
-                "Security audit & compliance (ongoing)",
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-red-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-[13px] text-[#605A57]">{item}</span>
-                </div>
-              ))}
-            </div>
-            <div className="pt-4 mt-4 border-t border-slate-100">
-              <span className="text-lg font-bold text-red-500">3-6 months</span>
-              <span className="text-[13px] text-slate-400 ml-2">minimum</span>
-            </div>
-          </div>
-          
-          {/* Use Consonant */}
-          <div className="p-4 sm:p-6 md:p-8 lg:p-10">
-            <div className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider mb-4">Use Consonant</div>
-            <div className="space-y-3">
-              {[
-                "Install SDK (5 minutes)",
-                "Implement connection flow (1 hour)",
-                "Make AI requests (30 minutes)",
-                "Configure pricing model (15 minutes)",
-                "Test & deploy (30 minutes)",
-                "Everything else: included",
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-[13px] text-[#605A57]">{item}</span>
-                </div>
-              ))}
-            </div>
-            <div className="pt-4 mt-4 border-t border-emerald-100">
-              <span className="text-lg font-bold text-emerald-500">~2 hours</span>
-              <span className="text-[13px] text-slate-400 ml-2">total</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch" />
-      </div>
+     
     </div>
   )
 }

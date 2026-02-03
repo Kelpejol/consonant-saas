@@ -317,7 +317,7 @@ export function HeroSection() {
         <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
           <FeatureCard
             title="Zero Key Management"
-            description="Your app gets instant AI access without ever touching a user's sensitive API keys. We handle the vaulting, encryption, and rotation."
+            description="Securely handle user API keys without the liability. Your BYOK platform remains accessible to non-technical users while providing the highest security for sensitive data."
             isActive={activeCard === 0}
             progress={activeCard === 0 ? progress : 0}
             onClick={() => handleCardClick(0)}
