@@ -26,14 +26,12 @@ export default function CTASection() {
 
           <div className="self-stretch flex flex-col justify-start items-start gap-4">
             <div className="self-stretch text-center flex justify-center flex-col text-[#37322F] text-3xl md:text-5xl font-semibold leading-tight md:leading-[1.1] font-sans tracking-tight">
-              Give your users unified
+              Add "Bring Your Own Provider"
               <br />
-              AI access in 30 minutes
+              to your app.
             </div>
             <div className="self-stretch text-center text-[#605A57] text-base md:text-lg leading-7 font-sans">
-              Join 1000+ platforms using Consonant to add AI features.
-              <br className="hidden md:block" />
-              Set your revenue share and focus on building.
+              Stop writing custom logic for every AI model and billing edge-case. Use our SDK to securely handle user API keys, provider routing, and usage tracking through a single interface.
             </div>
           </div>
 

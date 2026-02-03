@@ -481,20 +481,7 @@ export function BentoGridSection() {
                   <div className="absolute left-[30%] -top-6 -ml-4 bg-[#37322F] text-white text-[9px] font-bold px-2 py-0.5 rounded shadow-sm">Your Fee</div>
                 </div>
 
-                <div className="pt-2 space-y-2">
-                  <div className="flex justify-between text-[11px] font-medium font-mono">
-                    <span className="text-slate-400">PROVIDER COST</span>
-                    <span className="text-slate-600">$1.00</span>
-                  </div>
-                  <div className="flex justify-between text-[11px] font-medium font-mono">
-                    <span className="text-slate-400">USER PAYS</span>
-                    <span className="text-slate-600 font-bold">$1.30</span>
-                  </div>
-                  <div className="flex justify-between text-[12px] font-bold border-t border-slate-200/60 pt-2 text-emerald-600">
-                    <span>YOU EARN</span>
-                    <span className="bg-emerald-50 px-1.5 rounded">$0.30</span>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

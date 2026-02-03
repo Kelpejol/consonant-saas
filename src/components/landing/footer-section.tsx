@@ -18,7 +18,7 @@ export default function FooterSection() {
             />
           </div>
           <div className="text-white/70 text-sm font-medium leading-[18px] font-sans max-w-[240px]">
-            Unified AI access layer for platform developers. Connect once, set your revenue share, and ship faster.
+            Infrastructure for Bring Your Own Provider. Integrate once to implement custom revenue models.
           </div>
 
           {/* Social Media Icons */}
